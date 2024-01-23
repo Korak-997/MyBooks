@@ -1,7 +1,7 @@
 <script>
-	import Header from '../components/Header.svelte';
+	import Header from '$lib/components/Header.svelte';
 	import './styles.css';
-	import BookStore from '../stores/Store';
+	import BookStore from '$lib/stores/Store';
 	import { onMount } from 'svelte';
 
 	onMount(() => {
