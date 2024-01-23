@@ -1,6 +1,6 @@
 <script>
 	import { page } from '$app/stores';
-	import BooksStore from '../../../stores/Store';
+	import BooksStore from '$lib/stores/Store';
 	import dummyCover from '$lib/images/dummy-cover.png';
 	let book;
 	import Icon from '@iconify/svelte';

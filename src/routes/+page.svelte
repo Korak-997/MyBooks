@@ -1,5 +1,5 @@
 <script>
-	import BooksStore from '../stores/Store';
+	import BooksStore from '$lib/stores/Store';
 	import dummyCover from '$lib/images/dummy-cover.png';
 	let books;
 	import Icon from '@iconify/svelte';
@@ -26,7 +26,7 @@
 					<p>{book.description.substring(0, 100) + ' ...'}</p>
 				</div>
 				<div class="card-actions">
-					<a href={'/book/' + book.id} class="btn btn-info"
+					<a href={'/book/show/' + book.id} class="btn btn-info"
 						><Icon icon="mdi:show" class="text-4xl" /></a
 					>
 					<button class="btn btn-warning"><Icon icon="tabler:edit" class="text-4xl" /></button>
