@@ -26,7 +26,9 @@
 					<p>{book.description.substring(0, 100) + ' ...'}</p>
 				</div>
 				<div class="card-actions">
-					<button class="btn btn-info"><Icon icon="mdi:show" class="text-4xl" /></button>
+					<a href={'/book/' + book.id} class="btn btn-info"
+						><Icon icon="mdi:show" class="text-4xl" /></a
+					>
 					<button class="btn btn-warning"><Icon icon="tabler:edit" class="text-4xl" /></button>
 				</div>
 			</div>
