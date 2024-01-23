@@ -1,14 +1,22 @@
 <script>
 	import Header from '$lib/components/Header.svelte';
 	import './styles.css';
-	import BookStore from '$lib/stores/Store';
+	import BooksStore from '$lib/stores/BooksStore';
+	import AuthorsStore from '$lib/stores/AuthorsStore';
 	import { onMount } from 'svelte';
 
 	onMount(() => {
 		fetch('/books.json')
 			.then((response) => response.json())
 			.then((json) => {
-				BookStore.update(() => {
+				BooksStore.update(() => {
+					return json;
+				});
+			});
+		fetch('/authors.json')
+			.then((response) => response.json())
+			.then((json) => {
+				AuthorsStore.update(() => {
 					return json;
 				});
 			});

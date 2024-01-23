@@ -1,5 +1,5 @@
 <script>
-	import BooksStore from '$lib/stores/Store';
+	import BooksStore from '$lib/stores/BooksStore';
 	import Book from '../lib/components/Book.svelte';
 	import Icon from '@iconify/svelte';
 	let showStats = false;
