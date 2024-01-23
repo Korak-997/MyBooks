@@ -1,11 +1,15 @@
 <script>
 	import BooksStore from '$lib/stores/Store';
-	import dummyCover from '$lib/images/dummy-cover.png';
-	let books;
+	import Book from '../lib/components/Book.svelte';
 	import Icon from '@iconify/svelte';
+	let showStats = false;
+	let books;
 	BooksStore.subscribe((data) => {
 		books = data;
 	});
+	const startedBooks = books.filter((book) => book.started).length;
+	const finishedBooks = books.filter((book) => book.finished).length;
+	const remainedBooks = books.filter((book) => !book.finished).length;
 </script>
 
 <svelte:head>
@@ -13,25 +17,52 @@
 	<meta name="description" content="A personal Library" />
 </svelte:head>
 
-<div class="flex items-center justify-around gap-6 w-11/12 p-4 flex-wrap">
-	{#each books as book}
-		<div class="card w-96 bg-base-100 shadow-xl shadow-black">
-			<figure class="px-10 pt-10">
-				<img src={book.cover || dummyCover} alt="Shoes" class="rounded-xl" />
-			</figure>
-			<div class="card-body items-center text-center">
-				<h2 class="card-title text-2xl text-primary">{book.title}</h2>
-				<h3 class="card-title text-xl text-secondary">By: {book.author}</h3>
-				<div class="w-11/12">
-					<p>{book.description.substring(0, 100) + ' ...'}</p>
-				</div>
-				<div class="card-actions">
-					<a href={'/book/show/' + book.id} class="btn btn-info"
-						><Icon icon="mdi:show" class="text-4xl" /></a
-					>
-					<button class="btn btn-warning"><Icon icon="tabler:edit" class="text-4xl" /></button>
-				</div>
+<div class="flex items-center justify-around gap-6 flex-col w-11/12">
+	<div class="flex w-11/12 shadow-xl shadow-black items-center justify-around flex-wrap">
+		<h2 class="text-secondary font-extrabold text-2xl">Books</h2>
+		<a href={'/book/new/'} class="btn btn-success btn-sm"
+			><Icon icon="ic:baseline-plus" class="text-2xl" /></a
+		>
+	</div>
+	<div class="collapse shadow-xl shadow-black w-full">
+		<input type="checkbox" bind:checked={showStats} />
+		<div
+			class="collapse-title text-2xl font-medium flex justify-around items-center w-full text-primary"
+		>
+			{#if !showStats}<Icon icon="mingcute:down-fill" class="text-2xl" /> Stats <Icon
+					icon="mingcute:down-fill"
+					class="text-2xl"
+				/>
+			{:else}
+				<Icon icon="mingcute:up-fill" class="text-2xl" /> Stats <Icon
+					icon="mingcute:up-fill"
+					class="text-2xl"
+				/>
+			{/if}
+		</div>
+		<div class="stats flex w-full items-center justify-around flex-wrap">
+			<div class="stat place-items-center">
+				<div class="stat-title">All Books</div>
+				<div class="stat-value">{books.length}</div>
+			</div>
+			<div class="stat place-items-center">
+				<div class="stat-title">Started</div>
+				<div class="stat-value">{startedBooks}</div>
+			</div>
+			<div class="stat place-items-center">
+				<div class="stat-title">Finished</div>
+				<div class="stat-value">{finishedBooks}</div>
+			</div>
+			<div class="stat place-items-center">
+				<div class="stat-title">Remained</div>
+				<div class="stat-value">{remainedBooks}</div>
 			</div>
 		</div>
-	{/each}
+	</div>
+
+	<div class="flex items-center justify-around gap-6 w-11/12 p-4 flex-wrap">
+		{#each books as book}
+			<Book {book} />
+		{/each}
+	</div>
 </div>
