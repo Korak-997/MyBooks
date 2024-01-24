@@ -2,6 +2,7 @@
 	import AuthorsStore from '$lib/stores/AuthorsStore';
 	import Author from '$lib/components/Author.svelte';
 	import Icon from '@iconify/svelte';
+	import NoData from '$lib/images/NoData.svg';
 	let authors;
 	AuthorsStore.subscribe((data) => {
 		authors = data;
@@ -21,8 +22,14 @@
 		>
 	</div>
 	<div class="flex items-center justify-around gap-6 w-11/12 p-4 flex-wrap">
-		{#each authors as author}
-			<Author author={author.data} />
-		{/each}
+		{#if authors.length > 0}
+			{#each authors as author}
+				<Author author={author.data} />
+			{/each}
+		{:else}
+			<div class="w-11/12 shadow-xl shadow-black">
+				<img class="w-full" src={NoData} alt="No data" />
+			</div>
+		{/if}
 	</div>
 </div>
