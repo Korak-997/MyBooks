@@ -2,9 +2,32 @@
 	"name": "MyBooks",
 	"short_name": "MB",
 	"start_url": "/",
-	"background_color": "#1b4079",
-	"theme_color": "#d62828",
+	"background_color": "#070811",
+	"theme_color": "#9ba5d6",
 	"display": "standalone",
+	"shortcuts": [
+		{
+			"name": "Show all Books",
+			"short_name": "Books",
+			"description": "Shows all books in library",
+			"url": "/books",
+			"icons": [{ "src": "icon-192.png", "sizes": "192x192" }]
+		},
+		{
+			"name": "Add new Author",
+			"short_name": "Author +",
+			"description": "Adds new Author",
+			"url": "/author/new",
+			"icons": [{ "src": "plus-192.png", "sizes": "192x192" }]
+		},
+		{
+			"name": "Add new Book",
+			"short_name": "Author +",
+			"description": "Adds new Book",
+			"url": "/book/new",
+			"icons": [{ "src": "plus-192.png", "sizes": "192x192" }]
+		}
+	],
 	"icons": [
 		{
 			"src": "icon-128.png",
