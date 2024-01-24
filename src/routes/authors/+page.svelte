@@ -22,7 +22,7 @@
 	</div>
 	<div class="flex items-center justify-around gap-6 w-11/12 p-4 flex-wrap">
 		{#each authors as author}
-			<Author {author} />
+			<Author author={author.data} />
 		{/each}
 	</div>
 </div>

@@ -4,12 +4,14 @@
 	import BooksStore from '$lib/stores/BooksStore';
 	import AuthorsStore from '$lib/stores/AuthorsStore';
 
-	import { getBooksFromCloud } from '$lib/helpers/db';
+	import { getBooksFromCloud, getAuthorsFromCloud } from '$lib/helpers/db';
 	import { onMount } from 'svelte';
 
 	onMount(async () => {
 		const books = await getBooksFromCloud();
 		BooksStore.update(() => books);
+		const authors = await getAuthorsFromCloud();
+		AuthorsStore.update(() => authors);
 	});
 </script>
 

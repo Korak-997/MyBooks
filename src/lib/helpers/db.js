@@ -48,3 +48,16 @@ export const getBooksFromCloud = async () => {
 		console.error('Error getting books: ', e);
 	}
 };
+
+export const getAuthorsFromCloud = async () => {
+	const authors = [];
+	try {
+		const querySnapshot = await getDocs(collection(db, 'authors'));
+		querySnapshot.forEach((doc) => {
+			authors.push({ id: doc.id, data: doc.data() });
+		});
+		return authors;
+	} catch (e) {
+		console.error('Error getting authors: ', e);
+	}
+};
