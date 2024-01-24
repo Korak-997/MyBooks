@@ -24,7 +24,7 @@
 	<div class="flex items-center justify-around gap-6 w-11/12 p-4 flex-wrap">
 		{#if authors.length > 0}
 			{#each authors as author}
-				<Author author={author.data} />
+				<Author {author} />
 			{/each}
 		{:else}
 			<div class="w-11/12 shadow-xl shadow-black">

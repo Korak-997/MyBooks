@@ -63,6 +63,19 @@ export const deleteBookInCloud = async (id) => {
 	}
 };
 
+export const deleteAuthorInCloud = async (id) => {
+	try {
+		const authorRef = doc(db, 'authors', id);
+
+		await deleteDoc(doc(db, 'authors', id));
+		console.log('Document deleted with ID: ', authorRef.id);
+		return { succeed: true };
+	} catch (e) {
+		console.error('Error deleting author: ', e);
+		return { succeed: false, error: e };
+	}
+};
+
 export const addAuthorToCloud = async (author) => {
 	try {
 		const docRef = await addDoc(collection(db, 'authors'), author);
