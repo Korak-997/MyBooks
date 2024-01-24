@@ -30,6 +30,11 @@
 		</div>
 	</div>
 	<div class="flex items-center justify-around w-11/12 shadow-xl shadow-black p-4 flex-wrap">
+		{#each book.genres.split(',') as genre}
+			<p class="bg-primary p-2 m-1 text-black rounded-full shadow-xl shadow-black">{genre}</p>
+		{/each}
+	</div>
+	<div class="flex items-center justify-around w-11/12 shadow-xl shadow-black p-4 flex-wrap">
 		<button class="btn btn-error"><Icon icon="mdi:delete-outline" class="text-2xl" /></button>
 		<button class="btn btn-warning"><Icon icon="tabler:edit" class="text-2xl" /></button>
 	</div>
