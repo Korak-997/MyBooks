@@ -18,31 +18,13 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-export const getAuthorsFromCloud = () => {
-	db.collection('authors')
-		.get()
-		.then((querySnapshot) => {
-			return querySnapshot;
-		});
-};
-
-export const getBooksFromCloud = () => {
-	db.collection('books')
-		.get()
-		.then((querySnapshot) => {
-			return querySnapshot;
-		});
-};
-
-export const addBookToCloud = (book) => {
-	db.collection('books')
-		.add(book)
-		.then((docRef) => {
-			console.log('Document written with ID: ', docRef.id);
-		})
-		.catch((error) => {
-			console.error('Error adding document: ', error);
-		});
+export const addBookToCloud = async (book) => {
+	try {
+		const docRef = await addDoc(collection(db, 'books'), book);
+		console.log('Document written with ID: ', docRef.id);
+	} catch (e) {
+		console.error('Error adding document: ', e);
+	}
 };
 
 export const addAuthorToCloud = async (author) => {
