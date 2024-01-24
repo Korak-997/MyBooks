@@ -7,9 +7,10 @@
 	BooksStore.subscribe((data) => {
 		books = data;
 	});
-	const startedBooks = books.filter((book) => book.started).length;
-	const finishedBooks = books.filter((book) => book.finished).length;
-	const remainedBooks = books.filter((book) => !book.finished).length;
+	const booksData = books.map((book) => book.data);
+	const startedBooks = booksData.filter((book) => book.started).length;
+	const finishedBooks = booksData.filter((book) => book.finished).length;
+	const remainedBooks = booksData.filter((book) => !book.finished).length;
 </script>
 
 <svelte:head>
@@ -62,7 +63,7 @@
 
 	<div class="flex items-center justify-around gap-6 w-11/12 p-4 flex-wrap">
 		{#each books as book}
-			<Book {book} />
+			<Book book={book.data} />
 		{/each}
 	</div>
 </div>

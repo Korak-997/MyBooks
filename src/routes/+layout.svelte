@@ -3,23 +3,13 @@
 	import './styles.css';
 	import BooksStore from '$lib/stores/BooksStore';
 	import AuthorsStore from '$lib/stores/AuthorsStore';
+
+	import { getBooksFromCloud } from '$lib/helpers/db';
 	import { onMount } from 'svelte';
 
-	onMount(() => {
-		fetch('/books.json')
-			.then((response) => response.json())
-			.then((json) => {
-				BooksStore.update(() => {
-					return json;
-				});
-			});
-		fetch('/authors.json')
-			.then((response) => response.json())
-			.then((json) => {
-				AuthorsStore.update(() => {
-					return json;
-				});
-			});
+	onMount(async () => {
+		const books = await getBooksFromCloud();
+		BooksStore.update(() => books);
 	});
 </script>
 

@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { collection, addDoc, getFirestore } from 'firebase/firestore';
+import { collection, addDoc, getFirestore, getDocs } from 'firebase/firestore';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -33,5 +33,18 @@ export const addAuthorToCloud = async (author) => {
 		console.log('Document written with ID: ', docRef.id);
 	} catch (e) {
 		console.error('Error adding document: ', e);
+	}
+};
+
+export const getBooksFromCloud = async () => {
+	const books = [];
+	try {
+		const querySnapshot = await getDocs(collection(db, 'books'));
+		querySnapshot.forEach((doc) => {
+			books.push({ id: doc.id, data: doc.data() });
+		});
+		return books;
+	} catch (e) {
+		console.error('Error getting books: ', e);
 	}
 };
