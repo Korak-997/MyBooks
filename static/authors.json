@@ -1,6 +1,5 @@
 [
 	{
-		"id": 1,
 		"name": "Chinua Achebe",
 		"born": false,
 		"died": false,
@@ -8,7 +7,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 2,
 		"name": "Hans Christian Andersen",
 		"born": false,
 		"died": false,
@@ -16,7 +14,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 3,
 		"name": "Dante Alighieri",
 		"born": false,
 		"died": false,
@@ -24,7 +21,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 4,
 		"name": "Unknown",
 		"born": false,
 		"died": false,
@@ -32,7 +28,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 5,
 		"name": "Jane Austen",
 		"born": false,
 		"died": false,
@@ -40,7 +35,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 6,
 		"name": "Honoré de Balzac",
 		"born": false,
 		"died": false,
@@ -48,7 +42,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 7,
 		"name": "Samuel Beckett",
 		"born": false,
 		"died": false,
@@ -56,7 +49,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 8,
 		"name": "Giovanni Boccaccio",
 		"born": false,
 		"died": false,
@@ -64,7 +56,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 9,
 		"name": "Jorge Luis Borges",
 		"born": false,
 		"died": false,
@@ -72,7 +63,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 10,
 		"name": "Emily Brontë",
 		"born": false,
 		"died": false,
@@ -80,7 +70,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 11,
 		"name": "Albert Camus",
 		"born": false,
 		"died": false,
@@ -88,7 +77,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 12,
 		"name": "Paul Celan",
 		"born": false,
 		"died": false,
@@ -96,7 +84,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 13,
 		"name": "Louis-Ferdinand Céline",
 		"born": false,
 		"died": false,
@@ -104,7 +91,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 14,
 		"name": "Miguel de Cervantes",
 		"born": false,
 		"died": false,
@@ -112,7 +98,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 15,
 		"name": "Geoffrey Chaucer",
 		"born": false,
 		"died": false,
@@ -120,7 +105,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 16,
 		"name": "Anton Chekhov",
 		"born": false,
 		"died": false,
@@ -128,7 +112,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 17,
 		"name": "Joseph Conrad",
 		"born": false,
 		"died": false,
@@ -136,7 +119,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 18,
 		"name": "Charles Dickens",
 		"born": false,
 		"died": false,
@@ -144,7 +126,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 19,
 		"name": "Denis Diderot",
 		"born": false,
 		"died": false,
@@ -152,7 +133,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 20,
 		"name": "Alfred Döblin",
 		"born": false,
 		"died": false,
@@ -160,7 +140,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 21,
 		"name": "Fyodor Dostoevsky",
 		"born": false,
 		"died": false,
@@ -168,7 +147,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 22,
 		"name": "George Eliot",
 		"born": false,
 		"died": false,
@@ -176,7 +154,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 23,
 		"name": "Ralph Ellison",
 		"born": false,
 		"died": false,
@@ -184,7 +161,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 24,
 		"name": "Euripides",
 		"born": false,
 		"died": false,
@@ -192,7 +168,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 25,
 		"name": "William Faulkner",
 		"born": false,
 		"died": false,
@@ -200,7 +175,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 26,
 		"name": "Gustave Flaubert",
 		"born": false,
 		"died": false,
@@ -208,7 +182,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 27,
 		"name": "Federico García Lorca",
 		"born": false,
 		"died": false,
@@ -216,7 +189,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 28,
 		"name": "Gabriel García Márquez",
 		"born": false,
 		"died": false,
@@ -224,7 +196,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 29,
 		"name": "Johann Wolfgang von Goethe",
 		"born": false,
 		"died": false,
@@ -232,7 +203,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 30,
 		"name": "Nikolai Gogol",
 		"born": false,
 		"died": false,
@@ -240,7 +210,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 31,
 		"name": "Günter Grass",
 		"born": false,
 		"died": false,
@@ -248,7 +217,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 32,
 		"name": "João Guimarães Rosa",
 		"born": false,
 		"died": false,
@@ -256,7 +224,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 33,
 		"name": "Knut Hamsun",
 		"born": false,
 		"died": false,
@@ -264,7 +231,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 34,
 		"name": "Ernest Hemingway",
 		"born": false,
 		"died": false,
@@ -272,7 +238,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 35,
 		"name": "Homer",
 		"born": false,
 		"died": false,
@@ -280,7 +245,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 36,
 		"name": "Henrik Ibsen",
 		"born": false,
 		"died": false,
@@ -288,7 +252,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 37,
 		"name": "James Joyce",
 		"born": false,
 		"died": false,
@@ -296,7 +259,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 38,
 		"name": "Franz Kafka",
 		"born": false,
 		"died": false,
@@ -304,7 +266,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 39,
 		"name": "Kālidāsa",
 		"born": false,
 		"died": false,
@@ -312,7 +273,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 40,
 		"name": "Yasunari Kawabata",
 		"born": false,
 		"died": false,
@@ -320,7 +280,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 41,
 		"name": "Nikos Kazantzakis",
 		"born": false,
 		"died": false,
@@ -328,7 +287,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 42,
 		"name": "D. H. Lawrence",
 		"born": false,
 		"died": false,
@@ -336,7 +294,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 43,
 		"name": "Halldór Laxness",
 		"born": false,
 		"died": false,
@@ -344,7 +301,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 44,
 		"name": "Giacomo Leopardi",
 		"born": false,
 		"died": false,
@@ -352,7 +308,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 45,
 		"name": "Doris Lessing",
 		"born": false,
 		"died": false,
@@ -360,7 +315,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 46,
 		"name": "Astrid Lindgren",
 		"born": false,
 		"died": false,
@@ -368,7 +322,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 47,
 		"name": "Lu Xun",
 		"born": false,
 		"died": false,
@@ -376,7 +329,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 48,
 		"name": "Naguib Mahfouz",
 		"born": false,
 		"died": false,
@@ -384,7 +336,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 49,
 		"name": "Thomas Mann",
 		"born": false,
 		"died": false,
@@ -392,7 +343,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 50,
 		"name": "Herman Melville",
 		"born": false,
 		"died": false,
@@ -400,7 +350,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 51,
 		"name": "Michel de Montaigne",
 		"born": false,
 		"died": false,
@@ -408,7 +357,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 52,
 		"name": "Elsa Morante",
 		"born": false,
 		"died": false,
@@ -416,7 +364,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 53,
 		"name": "Toni Morrison",
 		"born": false,
 		"died": false,
@@ -424,7 +371,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 54,
 		"name": "Murasaki Shikibu",
 		"born": false,
 		"died": false,
@@ -432,7 +378,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 55,
 		"name": "Robert Musil",
 		"born": false,
 		"died": false,
@@ -440,7 +385,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 56,
 		"name": "Vladimir Nabokov",
 		"born": false,
 		"died": false,
@@ -448,7 +392,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 57,
 		"name": "George Orwell",
 		"born": false,
 		"died": false,
@@ -456,7 +399,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 58,
 		"name": "Ovid",
 		"born": false,
 		"died": false,
@@ -464,7 +406,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 59,
 		"name": "Fernando Pessoa",
 		"born": false,
 		"died": false,
@@ -472,7 +413,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 60,
 		"name": "Edgar Allan Poe",
 		"born": false,
 		"died": false,
@@ -480,7 +420,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 61,
 		"name": "Marcel Proust",
 		"born": false,
 		"died": false,
@@ -488,7 +427,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 62,
 		"name": "François Rabelais",
 		"born": false,
 		"died": false,
@@ -496,7 +434,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 63,
 		"name": "Juan Rulfo",
 		"born": false,
 		"died": false,
@@ -504,7 +441,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 64,
 		"name": "Rumi",
 		"born": false,
 		"died": false,
@@ -512,7 +448,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 65,
 		"name": "Salman Rushdie",
 		"born": false,
 		"died": false,
@@ -520,7 +455,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 66,
 		"name": "Saadi",
 		"born": false,
 		"died": false,
@@ -528,7 +462,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 67,
 		"name": "Tayeb Salih",
 		"born": false,
 		"died": false,
@@ -536,7 +469,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 68,
 		"name": "José Saramago",
 		"born": false,
 		"died": false,
@@ -544,7 +476,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 69,
 		"name": "William Shakespeare",
 		"born": false,
 		"died": false,
@@ -552,7 +483,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 70,
 		"name": "Sophocles",
 		"born": false,
 		"died": false,
@@ -560,7 +490,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 71,
 		"name": "Stendhal",
 		"born": false,
 		"died": false,
@@ -568,7 +497,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 72,
 		"name": "Laurence Sterne",
 		"born": false,
 		"died": false,
@@ -576,7 +504,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 73,
 		"name": "Italo Svevo",
 		"born": false,
 		"died": false,
@@ -584,7 +511,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 74,
 		"name": "Jonathan Swift",
 		"born": false,
 		"died": false,
@@ -592,7 +518,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 75,
 		"name": "Leo Tolstoy",
 		"born": false,
 		"died": false,
@@ -600,7 +525,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 76,
 		"name": "Mark Twain",
 		"born": false,
 		"died": false,
@@ -608,7 +532,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 77,
 		"name": "Valmiki",
 		"born": false,
 		"died": false,
@@ -616,7 +539,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 78,
 		"name": "Virgil",
 		"born": false,
 		"died": false,
@@ -624,7 +546,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 79,
 		"name": "Vyasa",
 		"born": false,
 		"died": false,
@@ -632,7 +553,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 80,
 		"name": "Walt Whitman",
 		"born": false,
 		"died": false,
@@ -640,7 +560,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 81,
 		"name": "Virginia Woolf",
 		"born": false,
 		"died": false,
@@ -648,7 +567,6 @@
 		"birth_place": false
 	},
 	{
-		"id": 82,
 		"name": "Marguerite Yourcenar",
 		"born": false,
 		"died": false,
