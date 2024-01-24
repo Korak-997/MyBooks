@@ -15,7 +15,7 @@
 			<p>{book.data.description.substring(0, 100) + ' ...'}</p>
 		</div>
 		<div class="card-actions">
-			<a href={'/book/show/' + book.data.id} class="btn btn-info"
+			<a href={'/book/show/' + book.id} class="btn btn-info"
 				><Icon icon="mdi:show" class="text-4xl" /></a
 			>
 			<a href={'/book/edit/' + book.id} class="btn btn-warning"
