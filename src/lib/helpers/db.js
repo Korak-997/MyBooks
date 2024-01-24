@@ -22,8 +22,10 @@ export const addBookToCloud = async (book) => {
 	try {
 		const docRef = await addDoc(collection(db, 'books'), book);
 		console.log('Document written with ID: ', docRef.id);
+		return { succeed: true };
 	} catch (e) {
 		console.error('Error adding document: ', e);
+		return { succeed: false, error: e };
 	}
 };
 

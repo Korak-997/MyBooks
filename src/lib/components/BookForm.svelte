@@ -54,7 +54,13 @@
 				pages: ''
 			}
 		: getDataFromStore(id);
-	const saveBook = () => addBookToCloud(book);
+	const saveBook = async () => {
+		const saved = await addBookToCloud(book);
+		if (saved.succeed) {
+			showSuccess = true;
+			setTimeout(() => location.reload(), 1500);
+		}
+	};
 </script>
 
 <div class="join">
