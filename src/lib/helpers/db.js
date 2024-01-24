@@ -50,6 +50,19 @@ export const updateBookInCloud = async (book, id) => {
 	}
 };
 
+export const updateAuthorInCloud = async (author, id) => {
+	try {
+		const authorRef = doc(db, 'authors', id);
+
+		await updateDoc(authorRef, author);
+		console.log('Document written with ID: ', authorRef.id);
+		return { succeed: true };
+	} catch (e) {
+		console.error('Error Updating Author: ', e);
+		return { succeed: false, error: e };
+	}
+};
+
 export const deleteBookInCloud = async (id) => {
 	try {
 		const bookRef = doc(db, 'books', id);

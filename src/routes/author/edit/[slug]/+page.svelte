@@ -2,6 +2,11 @@
 	import { page } from '$app/stores';
 	const id = $page.params.slug;
 	import AuthorForm from '$lib/components/AuthorForm.svelte';
+	import AuthorsStore from '$lib/stores/AuthorsStore';
+	let currentAuthor;
+	AuthorsStore.subscribe((data) => {
+		currentAuthor = data.filter((author) => author.id == id)[0];
+	});
 </script>
 
 <svelte:head>
@@ -9,5 +14,5 @@
 	<meta name="description" content="A personal Library" />
 </svelte:head>
 <div class="flex items-center shadow-xl shadow-black justify-center flex-col gap-6 w-11/12 my-6">
-	<AuthorForm newAuthor={false} {id} />
+	<AuthorForm newAuthor={false} currentAuthor={currentAuthor.data} id={currentAuthor.id} />
 </div>

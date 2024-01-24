@@ -1,15 +1,10 @@
 <script>
 	export let newAuthor;
 	export let id;
-	import AuthorsStore from '$lib/stores/AuthorsStore';
-	import { addAuthorToCloud } from '$lib/helpers/db';
+	export let currentAuthor;
+	import { addAuthorToCloud, updateAuthorInCloud } from '$lib/helpers/db';
 	let author;
 	import Icon from '@iconify/svelte';
-	const getDataFromStore = (id) => {
-		AuthorsStore.subscribe((data) => {
-			return data.filter((item) => item.id == id)[0];
-		});
-	};
 
 	author = newAuthor
 		? {
@@ -19,7 +14,7 @@
 				birth_place: '',
 				image: ''
 			}
-		: getDataFromStore(id);
+		: currentAuthor;
 	let showSuccess = false;
 	const handleImageUpload = (e) => {
 		// Scale down image on image upload
@@ -45,10 +40,18 @@
 		reader.readAsDataURL(e.target.files[0]);
 	};
 	const saveAuthor = async () => {
-		const saved = await addAuthorToCloud(author);
-		if (saved.succeed) {
-			showSuccess = true;
-			setTimeout(() => location.reload(), 1500);
+		let saved;
+		if (id && !newAuthor) {
+			saved = await updateAuthorInCloud(author, id);
+			if (saved.succeed) {
+				location.href = '/';
+			}
+		} else {
+			saved = await addAuthorToCloud(author);
+			if (saved.succeed) {
+				showSuccess = true;
+				setTimeout(() => location.reload(), 1500);
+			}
 		}
 	};
 </script>
