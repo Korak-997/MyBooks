@@ -1,6 +1,14 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { collection, addDoc, getFirestore, getDocs, updateDoc, doc } from 'firebase/firestore';
+import {
+	collection,
+	addDoc,
+	getFirestore,
+	getDocs,
+	updateDoc,
+	doc,
+	deleteDoc
+} from 'firebase/firestore';
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -38,6 +46,19 @@ export const updateBookInCloud = async (book, id) => {
 		return { succeed: true };
 	} catch (e) {
 		console.error('Error Updating book: ', e);
+		return { succeed: false, error: e };
+	}
+};
+
+export const deleteBookInCloud = async (id) => {
+	try {
+		const bookRef = doc(db, 'books', id);
+
+		await deleteDoc(doc(db, 'books', id));
+		console.log('Document deleted with ID: ', bookRef.id);
+		return { succeed: true };
+	} catch (e) {
+		console.error('Error deleting book: ', e);
 		return { succeed: false, error: e };
 	}
 };
