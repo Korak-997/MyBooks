@@ -1,17 +1,11 @@
 <script>
 	export let newBook;
 	export let id;
-	import BooksStore from '$lib/stores/BooksStore';
+	export let currentBook;
 	import AuthorsStore from '$lib/stores/AuthorsStore';
-	import { addBookToCloud } from '$lib/helpers/db';
+	import { addBookToCloud, updateBookInCloud } from '$lib/helpers/db';
 	let book;
 	import Icon from '@iconify/svelte';
-	const getDataFromStore = (id) => {
-		BooksStore.subscribe((data) => {
-			return data.filter((item) => item.id == id)[0];
-		});
-	};
-
 	let authors;
 	AuthorsStore.subscribe((data) => {
 		authors = data;
@@ -40,6 +34,7 @@
 		};
 		reader.readAsDataURL(e.target.files[0]);
 	};
+
 	book = newBook
 		? {
 				title: '',
@@ -54,17 +49,32 @@
 				description: '',
 				pages: ''
 			}
-		: getDataFromStore(id);
+		: currentBook;
 	const saveBook = async () => {
 		book.author = authors.filter((author) => author.id == book.authorId)[0].data;
-		const saved = await addBookToCloud(book);
-		if (saved.succeed) {
-			showSuccess = true;
-			setTimeout(() => location.reload(), 1500);
+		let saved;
+		if (id && !newBook) {
+			saved = await updateBookInCloud(book, id);
+			if (saved.succeed) {
+				location.href = '/';
+			}
+		} else {
+			saved = await addBookToCloud(book);
+			if (saved.succeed) {
+				showSuccess = true;
+				setTimeout(() => location.reload(), 1500);
+			}
 		}
 	};
 </script>
 
+{#if showSuccess}
+	<div class="toast toast-top toast-center">
+		<div class="alert alert-success">
+			<span>Author saved Successfully.</span>
+		</div>
+	</div>
+{/if}
 <div class="join">
 	<label for="title" class="btn join-item rounded-l-full">Title</label>
 	<input
@@ -86,7 +96,7 @@
 		{/each}
 	</select>
 	<div class="label">
-		<span class="label-text-alt text-secondary"
+		<span class="label-text-alt"
 			>If needed Author is not available then <a href="author/new">add new author</a></span
 		>
 	</div>
@@ -127,9 +137,10 @@
 <textarea
 	placeholder="Description"
 	class="textarea textarea-bordered textarea-lg w-full max-w-xs"
+	bind:value={book.description}
 	name="description"
-	id="description">{book.description}</textarea
->
+	id="description"
+/>
 
 <div class="join">
 	<label for="genres" class="btn join-item rounded-l-full">Genres</label>

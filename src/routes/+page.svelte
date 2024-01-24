@@ -66,7 +66,7 @@
 
 		<div class="flex items-center justify-around gap-6 w-11/12 p-4 flex-wrap">
 			{#each books as book}
-				<Book book={book.data} />
+				<Book {book} />
 			{/each}
 		</div>
 	{:else}
