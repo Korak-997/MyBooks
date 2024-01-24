@@ -20,7 +20,7 @@
 				image: ''
 			}
 		: getDataFromStore(id);
-
+	let showSuccess = false;
 	const handleImageUpload = (e) => {
 		// Scale down image on image upload
 		//Convert to base64 String on image upload
@@ -44,8 +44,22 @@
 		};
 		reader.readAsDataURL(e.target.files[0]);
 	};
-	const saveAuthor = () => addAuthorToCloud(author);
+	const saveAuthor = async () => {
+		const saved = await addAuthorToCloud(author);
+		if (saved.succeed) {
+			showSuccess = true;
+			setTimeout(() => location.reload(), 1500);
+		}
+	};
 </script>
+
+{#if showSuccess}
+	<div class="toast toast-top toast-center">
+		<div class="alert alert-success">
+			<span>Author saved Successfully.</span>
+		</div>
+	</div>
+{/if}
 
 <div class="join">
 	<label for="name" class="btn join-item rounded-l-full">Name</label>
