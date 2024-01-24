@@ -2,6 +2,7 @@
 	export let newBook;
 	export let id;
 	import BooksStore from '$lib/stores/BooksStore';
+	import AuthorsStore from '$lib/stores/AuthorsStore';
 	import { addBookToCloud } from '$lib/helpers/db';
 	let book;
 	import Icon from '@iconify/svelte';
@@ -10,6 +11,12 @@
 			return data.filter((item) => item.id == id)[0];
 		});
 	};
+
+	let authors;
+	AuthorsStore.subscribe((data) => {
+		authors = data;
+	});
+	let showSuccess = false;
 	const handleImageUpload = (e) => {
 		// Scale down image on image upload
 		//Convert to base64 String on image upload
@@ -36,7 +43,7 @@
 	book = newBook
 		? {
 				title: '',
-				author: '',
+				author_id: '',
 				language: '',
 				genres: '',
 				tags: '',
@@ -59,16 +66,23 @@
 		id="title"
 	/>
 </div>
-<div class="join">
-	<label for="author" class="btn join-item rounded-l-full">Author</label>
-	<input
-		class="input input-bordered join-item"
-		bind:value={book.author}
-		type="text"
-		name="author"
-		id="author"
-	/>
-</div>
+<label class="form-control w-full max-w-xs">
+	<div class="label">
+		<span class="label-text">Pick Author</span>
+	</div>
+	<select bind:value={book.author_id} class="select select-bordered">
+		<option disabled selected></option>
+		{#each authors as author}
+			<option value={author.id}>{author.data.name}</option>
+		{/each}
+	</select>
+	<div class="label">
+		<span class="label-text-alt text-secondary"
+			>If needed Author is not available then <a href="author/new">add new author</a></span
+		>
+	</div>
+</label>
+
 <label class="form-control w-full max-w-xs">
 	<div class="label">
 		<span class="label-text" for="cover">Add Cover</span>
