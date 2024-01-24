@@ -5,7 +5,7 @@
 <header>
 	<div class="navbar bg-base-100 shadow-md shadow-black">
 		<div class="navbar-start">
-			<a class="hover:shadow-2xl" href="/"><img src={Logo} alt="Logo" class="w-16" /></a>
+			<a class="hover:shadow-2xl" href="/"><img src={Logo} alt="Logo" class="w-10" /></a>
 		</div>
 		<div class="navbar-center flex">
 			<ul class="menu menu-horizontal px-1 text-2xl">
