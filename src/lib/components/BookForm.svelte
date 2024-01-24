@@ -1,8 +1,8 @@
 <script>
 	export let newBook;
 	export let id;
-	import BooksStore from '$lib/stores/Store';
-
+	import BooksStore from '$lib/stores/BooksStore';
+	import { addBookToCloud } from '$lib/helpers/db';
 	let book;
 	import Icon from '@iconify/svelte';
 	const getDataFromStore = (id) => {
@@ -10,7 +10,29 @@
 			return data.filter((item) => item.id == id)[0];
 		});
 	};
-
+	const handleImageUpload = (e) => {
+		// Scale down image on image upload
+		//Convert to base64 String on image upload
+		const reader = new FileReader();
+		reader.onload = function (e) {
+			const img = new Image();
+			img.src = e.target.result;
+			//scales down image to be
+			// 250px X 250px
+			img.onload = function () {
+				const canvas = document.createElement('canvas');
+				const ctx = canvas.getContext('2d');
+				canvas.width = 250;
+				canvas.height = 250;
+				ctx.drawImage(img, 0, 0, 250, 250);
+				const resizedBase64 = canvas.toDataURL('image/png');
+				//author_image source to base64 string
+				//so author_image be saved in database
+				book.image = resizedBase64;
+			};
+		};
+		reader.readAsDataURL(e.target.files[0]);
+	};
 	book = newBook
 		? {
 				title: '',
@@ -24,13 +46,14 @@
 				description: ''
 			}
 		: getDataFromStore(id);
+	const saveBook = () => addBookToCloud(book);
 </script>
 
 <div class="join">
 	<label for="title" class="btn join-item rounded-l-full">Title</label>
 	<input
 		class="input input-bordered join-item"
-		value={book.title}
+		bind:value={book.title}
 		type="text"
 		name="title"
 		id="title"
@@ -40,7 +63,7 @@
 	<label for="author" class="btn join-item rounded-l-full">Author</label>
 	<input
 		class="input input-bordered join-item"
-		value={book.author}
+		bind:value={book.author}
 		type="text"
 		name="author"
 		id="author"
@@ -53,16 +76,16 @@
 	<input
 		type="file"
 		class="file-input file-input-bordered w-full max-w-xs"
-		value={book.cover}
 		name="cover"
 		id="cover"
+		on:change={handleImageUpload}
 	/>
 </label>
 <div class="join">
 	<label for="language" class="btn join-item rounded-l-full">Language</label>
 	<input
 		class="input input-bordered join-item"
-		value={book.language}
+		bind:value={book.language}
 		type="text"
 		name="language"
 		id="language"
@@ -72,7 +95,7 @@
 	<label for="genres" class="btn join-item rounded-l-full">Genres</label>
 	<input
 		class="input input-bordered join-item"
-		value={book.genres}
+		bind:value={book.genres}
 		type="text"
 		name="genres"
 		id="genres"
@@ -82,7 +105,7 @@
 	<label for="tags" class="btn join-item rounded-l-full">Tags</label>
 	<input
 		class="input input-bordered join-item"
-		value={book.tags}
+		bind:value={book.tags}
 		type="text"
 		name="tags"
 		id="tags"
@@ -92,7 +115,7 @@
 	<label for="started" class="btn join-item rounded-l-full">Started</label>
 	<input
 		class="input input-bordered join-item"
-		value={book.started}
+		bind:value={book.started}
 		type="date"
 		name="started"
 		id="started"
@@ -102,7 +125,7 @@
 	<label for="finished" class="btn join-item rounded-l-full">Finished</label>
 	<input
 		class="input input-bordered join-item"
-		value={book.finished}
+		bind:value={book.finished}
 		type="date"
 		name="finished"
 		id="finished"
@@ -117,7 +140,7 @@
 
 <div class="flex items-center justify-around w-11/12 shadow-xl shadow-black p-4 flex-wrap">
 	<button class="btn btn-error"><Icon icon="iconoir:cancel" class="text-2xl" /></button>
-	<button class="btn btn-success"
+	<button on:click={saveBook} class="btn btn-success"
 		><Icon icon="material-symbols:save-outline" class="text-2xl" /></button
 	>
 </div>
