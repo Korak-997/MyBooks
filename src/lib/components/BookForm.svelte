@@ -35,7 +35,7 @@
 				const resizedBase64 = canvas.toDataURL('image/png');
 				//author_image source to base64 string
 				//so author_image be saved in database
-				book.image = resizedBase64;
+				book.cover = resizedBase64;
 			};
 		};
 		reader.readAsDataURL(e.target.files[0]);
@@ -50,7 +50,8 @@
 				started: '',
 				finished: '',
 				cover: '',
-				description: ''
+				description: '',
+				pages: ''
 			}
 		: getDataFromStore(id);
 	const saveBook = () => addBookToCloud(book);
@@ -96,6 +97,16 @@
 	/>
 </label>
 <div class="join">
+	<label for="pages" class="btn join-item rounded-l-full">Pages</label>
+	<input
+		class="input input-bordered join-item"
+		bind:value={book.pages}
+		type="number"
+		name="pages"
+		id="pages"
+	/>
+</div>
+<div class="join">
 	<label for="language" class="btn join-item rounded-l-full">Language</label>
 	<input
 		class="input input-bordered join-item"
@@ -105,6 +116,13 @@
 		id="language"
 	/>
 </div>
+<textarea
+	placeholder="Description"
+	class="textarea textarea-bordered textarea-lg w-full max-w-xs"
+	name="description"
+	id="description">{book.description}</textarea
+>
+
 <div class="join">
 	<label for="genres" class="btn join-item rounded-l-full">Genres</label>
 	<input
@@ -145,12 +163,6 @@
 		id="finished"
 	/>
 </div>
-<textarea
-	placeholder="Description"
-	class="textarea textarea-bordered textarea-lg w-full max-w-xs"
-	name="description"
-	id="description">{book.description}</textarea
->
 
 <div class="flex items-center justify-around w-11/12 shadow-xl shadow-black p-4 flex-wrap">
 	<button class="btn btn-error"><Icon icon="iconoir:cancel" class="text-2xl" /></button>
