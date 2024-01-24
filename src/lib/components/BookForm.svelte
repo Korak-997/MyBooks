@@ -43,7 +43,8 @@
 	book = newBook
 		? {
 				title: '',
-				author_id: '',
+				authorId: '',
+				author: '',
 				language: '',
 				genres: '',
 				tags: '',
@@ -55,6 +56,7 @@
 			}
 		: getDataFromStore(id);
 	const saveBook = async () => {
+		book.author = authors.filter((author) => author.id == book.authorId)[0].data;
 		const saved = await addBookToCloud(book);
 		if (saved.succeed) {
 			showSuccess = true;
@@ -77,7 +79,7 @@
 	<div class="label">
 		<span class="label-text">Pick Author</span>
 	</div>
-	<select bind:value={book.author_id} class="select select-bordered">
+	<select bind:value={book.authorId} class="select select-bordered">
 		<option disabled selected></option>
 		{#each authors as author}
 			<option value={author.id}>{author.data.name}</option>
