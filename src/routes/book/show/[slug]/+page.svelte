@@ -45,9 +45,6 @@
 		<button on:click={handleDelete} class="btn btn-error"
 			><Icon icon="mdi:delete-outline" class="text-2xl" /></button
 		>
-		<a href={'/book/edit/' + book.id} class="btn btn-warning"
-			><Icon icon="tabler:edit" class="text-4xl" /></a
-		>
 	</div>
 	<div class="shadow-xl shadow-black p-4 w-11/12 text-left">
 		<p class="text-xl">{book.description}</p>

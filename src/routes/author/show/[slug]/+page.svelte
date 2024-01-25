@@ -43,6 +43,5 @@
 		<button on:click={handleDelete} class="btn btn-error"
 			><Icon icon="mdi:delete-outline" class="text-2xl" /></button
 		>
-		<button class="btn btn-warning"><Icon icon="tabler:edit" class="text-2xl" /></button>
 	</div>
 </div>

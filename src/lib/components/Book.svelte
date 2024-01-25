@@ -18,9 +18,6 @@
 			<a href={'/book/show/' + book.$id} class="btn btn-info"
 				><Icon icon="mdi:show" class="text-4xl" /></a
 			>
-			<a href={'/book/edit/' + book.$id} class="btn btn-warning"
-				><Icon icon="tabler:edit" class="text-4xl" /></a
-			>
 		</div>
 	</div>
 </div>
