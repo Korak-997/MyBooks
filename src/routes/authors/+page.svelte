@@ -15,7 +15,9 @@
 </svelte:head>
 
 <div class="flex items-center justify-around gap-6 flex-col w-11/12">
-	<div class="flex w-11/12 shadow-xl shadow-black items-center justify-around flex-wrap">
+	<div
+		class="flex w-11/12 shadow-xl shadow-black items-center justify-around flex-wrap p-4 rounded-xl"
+	>
 		<h2 class="text-secondary font-extrabold text-2xl">Authors</h2>
 		<a href={'/author/new/'} class="btn btn-success btn-sm"
 			><Icon icon="ic:baseline-plus" class="text-2xl" /></a

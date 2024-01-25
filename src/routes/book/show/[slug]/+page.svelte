@@ -24,29 +24,36 @@
 	<h1 class="text-2xl w-full text-center my-4 font-extrabold text-primary shadow-xl shadow-black">
 		{book.title}
 	</h1>
-	<img src={book.cover || dummyCover} alt={book.title + 'cover'} class="w-2/3" />
+	<img src={book.cover || dummyCover} alt={book.title + 'cover'} class="w-80 h-96" />
 	<div class="flex items-center justify-around w-11/12 shadow-xl shadow-black p-4 flex-wrap">
-		<div class="flex w-48 items-center justify-between">
-			<Icon icon="system-uicons:pages" class="text-2xl" />
-			<p class="text-xl">{book.pages}</p>
-		</div>
-
-		<div class="flex w-48 items-center justify-between">
-			<Icon icon="ion:language-sharp" class="text-2xl" />
-			<p class="text-xl">{book.language}</p>
-		</div>
+		{#if book.pages}
+			<div class="flex w-48 items-center justify-between">
+				<Icon icon="system-uicons:pages" class="text-2xl" />
+				<p class="text-xl">{book.pages}</p>
+			</div>
+		{/if}
+		{#if book.language}
+			<div class="flex w-48 items-center justify-between">
+				<Icon icon="ion:language-sharp" class="text-2xl" />
+				<p class="text-xl">{book.language}</p>
+			</div>
+		{/if}
 	</div>
-	<div class="flex items-center justify-around w-11/12 shadow-xl shadow-black p-4 flex-wrap">
-		{#each book.genres.split(',') as genre}
-			<p class="bg-primary p-2 m-1 text-black rounded-full shadow-xl shadow-black">{genre}</p>
-		{/each}
-	</div>
+	{#if book.genres}
+		<div class="flex items-center justify-around w-11/12 shadow-xl shadow-black p-4 flex-wrap">
+			{#each book.genres.split(',') as genre}
+				<p class="bg-primary p-2 m-1 text-black rounded-full shadow-xl shadow-black">{genre}</p>
+			{/each}
+		</div>
+	{/if}
 	<div class="flex items-center justify-around w-11/12 shadow-xl shadow-black p-4 flex-wrap">
 		<button on:click={handleDelete} class="btn btn-error"
 			><Icon icon="mdi:delete-outline" class="text-2xl" /></button
 		>
 	</div>
-	<div class="shadow-xl shadow-black p-4 w-11/12 text-left">
-		<p class="text-xl">{book.description}</p>
-	</div>
+	{#if book.description}
+		<div class="shadow-xl shadow-black p-6 w-11/12 text-left">
+			<p class="text-xl">{book.description}</p>
+		</div>
+	{/if}
 </div>

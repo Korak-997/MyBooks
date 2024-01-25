@@ -6,7 +6,7 @@
 
 <div class="card w-96 bg-base-100 shadow-xl shadow-black">
 	<figure class="px-10 pt-10">
-		<img src={book.cover || dummyCover} alt={book.title} class="rounded-xl" />
+		<img src={book.cover || dummyCover} alt={book.title} class="rounded-xl w-80 h-96" />
 	</figure>
 	<div class="card-body items-center text-center">
 		<h2 class="card-title text-2xl text-primary">{book.title}</h2>
