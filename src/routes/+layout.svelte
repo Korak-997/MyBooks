@@ -8,10 +8,15 @@
 	import { onMount } from 'svelte';
 
 	onMount(async () => {
-		const books = await getBooksFromCloud();
-		BooksStore.update(() => books);
 		const authors = await getAuthorsFromCloud();
 		AuthorsStore.update(() => authors);
+		const books = await getBooksFromCloud();
+		BooksStore.update(() =>
+			books.map(
+				(book) =>
+					(book = { author: authors.filter((author) => author.$id == book.authorId)[0], ...book })
+			)
+		);
 	});
 </script>
 
