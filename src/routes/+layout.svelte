@@ -24,7 +24,7 @@
 <div class="app">
 	<Header />
 
-	<main>
+	<main class="flex items-center justify-center flex-col">
 		<slot />
 	</main>
 	<Footer />
