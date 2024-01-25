@@ -8,15 +8,15 @@ module.exports = {
 		themes: [
 			{
 				dark: {
-					primary: '#9ba5d6',
+					primary: '#92c2d5',
 
-					secondary: '#2574FD',
+					secondary: '#22708f',
 
-					accent: '#662f73',
+					accent: '#3ab6e8',
 
-					neutral: '#eaedf6',
+					neutral: '#e4e8e9',
 
-					'base-100': '#070811',
+					'base-100': '#090e10',
 
 					info: '#6091e2',
 

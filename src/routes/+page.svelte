@@ -9,10 +9,9 @@
 	BooksStore.subscribe((data) => {
 		books = data;
 	});
-	const booksData = books.map((book) => book.data);
-	const startedBooks = booksData.filter((book) => book.started).length;
-	const finishedBooks = booksData.filter((book) => book.finished).length;
-	const remainedBooks = booksData.filter((book) => !book.finished).length;
+	const startedBooks = books.filter((book) => book.started).length;
+	const finishedBooks = books.filter((book) => book.finished).length;
+	const remainedBooks = books.filter((book) => !book.finished).length;
 </script>
 
 <svelte:head>

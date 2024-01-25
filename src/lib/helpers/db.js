@@ -1,127 +1,72 @@
-// Import the functions you need from the SDKs you need
-import { initializeApp } from 'firebase/app';
-import {
-	collection,
-	addDoc,
-	getFirestore,
-	getDocs,
-	updateDoc,
-	doc,
-	deleteDoc
-} from 'firebase/firestore';
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { Client, Databases, ID } from 'appwrite';
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-	apiKey: import.meta.env.VITE_apiKey,
-	authDomain: import.meta.env.VITE_authDomain,
-	projectId: import.meta.env.VITE_projectId,
-	storageBucket: import.meta.env.VITE_storageBucket,
-	messagingSenderId: import.meta.env.VITE_messagingSenderId,
-	appId: import.meta.env.VITE_appId
+const client = new Client()
+	.setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT)
+	.setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);
+
+const databases = new Databases(client);
+
+//author methods
+
+export const addAuthorToCloud = async (author) => {
+	try {
+		await databases.createDocument('my-books', 'authors', ID.unique(), author);
+		return { succeed: true };
+	} catch (error) {
+		return { succeed: false, error: error };
+	}
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const getAuthorsFromCloud = async () => {
+	try {
+		const response = await databases.listDocuments('my-books', 'authors');
+		if (response.total > 0) {
+			return [...response.documents];
+		} else {
+			return [];
+		}
+	} catch (error) {
+		console.error('Error getting authors: ', error);
+	}
+};
 
-const db = getFirestore(app);
+export const deleteAuthorInCloud = async (id) => {
+	try {
+		databases.deleteDocument('my-books', 'authors', id);
+	} catch (error) {
+		console.error('Error getting authors: ', error);
+	}
+};
+
+//book methods
+
+export const getBooksFromCloud = async () => {
+	try {
+		const response = await databases.listDocuments('my-books', 'books');
+		if (response.total > 0) {
+			return [...response.documents];
+		} else {
+			return [];
+		}
+	} catch (error) {
+		console.error('Error getting books: ', error);
+	}
+};
 
 export const addBookToCloud = async (book) => {
 	try {
-		const docRef = await addDoc(collection(db, 'books'), book);
-		console.log('Document written with ID: ', docRef.id);
+		await databases.createDocument('my-books', 'books', ID.unique(), book);
 		return { succeed: true };
 	} catch (e) {
 		console.error('Error adding document: ', e);
-		return { succeed: false, error: e };
-	}
-};
-
-export const updateBookInCloud = async (book, id) => {
-	try {
-		const bookRef = doc(db, 'books', id);
-
-		await updateDoc(bookRef, book);
-		console.log('Document written with ID: ', bookRef.id);
-		return { succeed: true };
-	} catch (e) {
-		console.error('Error Updating book: ', e);
-		return { succeed: false, error: e };
-	}
-};
-
-export const updateAuthorInCloud = async (author, id) => {
-	try {
-		const authorRef = doc(db, 'authors', id);
-
-		await updateDoc(authorRef, author);
-		console.log('Document written with ID: ', authorRef.id);
-		return { succeed: true };
-	} catch (e) {
-		console.error('Error Updating Author: ', e);
 		return { succeed: false, error: e };
 	}
 };
 
 export const deleteBookInCloud = async (id) => {
 	try {
-		const bookRef = doc(db, 'books', id);
-
-		await deleteDoc(doc(db, 'books', id));
-		console.log('Document deleted with ID: ', bookRef.id);
-		return { succeed: true };
+		databases.deleteDocument('my-books', 'books', id);
 	} catch (e) {
 		console.error('Error deleting book: ', e);
-		return { succeed: false, error: e };
-	}
-};
-
-export const deleteAuthorInCloud = async (id) => {
-	try {
-		const authorRef = doc(db, 'authors', id);
-
-		await deleteDoc(doc(db, 'authors', id));
-		console.log('Document deleted with ID: ', authorRef.id);
-		return { succeed: true };
-	} catch (e) {
-		console.error('Error deleting author: ', e);
-		return { succeed: false, error: e };
-	}
-};
-
-export const addAuthorToCloud = async (author) => {
-	try {
-		const docRef = await addDoc(collection(db, 'authors'), author);
-		console.log('Document written with ID: ', docRef.id);
-		return { succeed: true };
-	} catch (e) {
-		console.error('Error adding document: ', e);
-		return { succeed: false, error: e };
-	}
-};
-
-export const getBooksFromCloud = async () => {
-	const books = [];
-	try {
-		const querySnapshot = await getDocs(collection(db, 'books'));
-		querySnapshot.forEach((doc) => {
-			books.push({ id: doc.id, data: doc.data() });
-		});
-		return books;
-	} catch (e) {
-		console.error('Error getting books: ', e);
-	}
-};
-
-export const getAuthorsFromCloud = async () => {
-	const authors = [];
-	try {
-		const querySnapshot = await getDocs(collection(db, 'authors'));
-		querySnapshot.forEach((doc) => {
-			authors.push({ id: doc.id, data: doc.data() });
-		});
-		return authors;
-	} catch (e) {
-		console.error('Error getting authors: ', e);
 	}
 };
