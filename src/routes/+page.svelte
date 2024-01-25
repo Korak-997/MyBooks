@@ -20,7 +20,9 @@
 </svelte:head>
 
 <div class="flex items-center justify-around gap-6 flex-col w-11/12">
-	<div class="flex w-11/12 shadow-xl shadow-black items-center justify-around flex-wrap">
+	<div
+		class="flex w-11/12 shadow-xl shadow-black items-center justify-around flex-wrap p-4 rounded-xl"
+	>
 		<h2 class="text-secondary font-extrabold text-2xl">Books</h2>
 		<a href={'/book/new/'} class="btn btn-success btn-sm"
 			><Icon icon="ic:baseline-plus" class="text-2xl" /></a
@@ -43,7 +45,7 @@
 					/>
 				{/if}
 			</div>
-			<div class="stats flex w-full items-center justify-around flex-wrap">
+			<div class="stats stats-vertical lg:stats-horizontal md:stats-horizontal">
 				<div class="stat place-items-center">
 					<div class="stat-title">All Books</div>
 					<div class="stat-value">{books.length}</div>
