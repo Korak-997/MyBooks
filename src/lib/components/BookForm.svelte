@@ -3,7 +3,8 @@
 	export let id;
 	export let currentBook;
 	import AuthorsStore from '$lib/stores/AuthorsStore';
-	import { addBookToCloud, updateBookInCloud } from '$lib/helpers/db';
+	import { addBookToCloud } from '$lib/helpers/db';
+	import { cleanObject } from '$lib/helpers/methods';
 	let book;
 	import Icon from '@iconify/svelte';
 	let authors;
@@ -54,12 +55,13 @@
 		book.author = authors.filter((author) => author.id == book.authorId)[0].data;
 		let saved;
 		if (id && !newBook) {
-			saved = await updateBookInCloud(book, id);
-			if (saved.succeed) {
-				location.href = '/';
-			}
+			// saved = await updateBookInCloud(book, id);
+			// if (saved.succeed) {
+			// 	location.href = '/';
+			// }
+			console.log('updating not implemented yet');
 		} else {
-			saved = await addBookToCloud(book);
+			saved = await addBookToCloud(cleanObject(book));
 			if (saved.succeed) {
 				showSuccess = true;
 				setTimeout(() => location.reload(), 1500);

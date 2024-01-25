@@ -2,7 +2,8 @@
 	export let newAuthor;
 	export let id;
 	export let currentAuthor;
-	import { addAuthorToCloud, updateAuthorInCloud } from '$lib/helpers/db';
+	import { addAuthorToCloud } from '$lib/helpers/db';
+	import { cleanObject } from '$lib/helpers/methods';
 	let author;
 	import Icon from '@iconify/svelte';
 
@@ -42,12 +43,14 @@
 	const saveAuthor = async () => {
 		let saved;
 		if (id && !newAuthor) {
-			saved = await updateAuthorInCloud(author, id);
-			if (saved.succeed) {
-				location.href = '/';
-			}
+			// saved = await updateAuthorInCloud(cleanObject({ name: author.name }));
+			// if (saved.succeed) {
+			// 	location.href = '/';
+			// }
+			console.log('update not yet implemented');
 		} else {
-			saved = await addAuthorToCloud(author);
+			//cleans author object
+			saved = await addAuthorToCloud(cleanObject(author));
 			if (saved.succeed) {
 				showSuccess = true;
 				setTimeout(() => location.reload(), 1500);
