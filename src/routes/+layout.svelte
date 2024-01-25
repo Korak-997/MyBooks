@@ -6,6 +6,7 @@
 
 	import { getAuthorsFromCloud, getBooksFromCloud } from '$lib/helpers/db';
 	import { onMount } from 'svelte';
+	import Footer from '../lib/components/Footer.svelte';
 
 	onMount(async () => {
 		const authors = await getAuthorsFromCloud();
@@ -26,4 +27,5 @@
 	<main>
 		<slot />
 	</main>
+	<Footer />
 </div>
