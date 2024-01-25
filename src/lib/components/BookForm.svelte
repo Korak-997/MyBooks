@@ -40,7 +40,6 @@
 		? {
 				title: '',
 				authorId: '',
-				author: '',
 				language: '',
 				genres: '',
 				tags: '',
@@ -52,7 +51,6 @@
 			}
 		: currentBook;
 	const saveBook = async () => {
-		book.author = authors.filter((author) => author.id == book.authorId)[0].data;
 		let saved;
 		if (id && !newBook) {
 			// saved = await updateBookInCloud(book, id);
@@ -94,7 +92,7 @@
 	<select bind:value={book.authorId} class="select select-bordered">
 		<option disabled selected></option>
 		{#each authors as author}
-			<option value={author.id}>{author.data.name}</option>
+			<option value={author.$id}>{author.name}</option>
 		{/each}
 	</select>
 	<div class="label">
