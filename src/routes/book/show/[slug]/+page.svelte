@@ -14,6 +14,7 @@
 			location.href = '/';
 		}
 	};
+	let language = book.language.toLowerCase();
 </script>
 
 <svelte:head>
@@ -21,7 +22,10 @@
 	<meta name="description" content="A personal Library" />
 </svelte:head>
 <div class="flex items-center justify-center flex-col gap-6 w-11/12">
-	<h1 class="text-2xl w-full text-center my-4 font-extrabold text-primary shadow-xl shadow-black">
+	<h1
+		class:font-kurdish={language == 'kurdish'}
+		class="text-2xl w-full text-center my-4 font-extrabold text-primary shadow-xl shadow-black"
+	>
 		{book.title}
 	</h1>
 	<img src={book.cover || dummyCover} alt={book.title + 'cover'} class="w-80 h-96" />
@@ -53,7 +57,7 @@
 	</div>
 	{#if book.description}
 		<div class="shadow-xl shadow-black p-6 w-11/12 text-left">
-			<p class="text-xl">{book.description}</p>
+			<p class:font-kurdish={language == 'kurdish'} class="text-xl">{book.description}</p>
 		</div>
 	{/if}
 </div>

@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+	font-family: 'k24';
+	src:
+		local('K24KurdishBold-Bold'),
+		url('K24KurdishBold-Bold.ttf') format('truetype');
+}
+
+.font-kurdish {
+	font-family: 'k24' !important;
+	direction: 'rtl' !important;
+	text-align: right !important;
+}
