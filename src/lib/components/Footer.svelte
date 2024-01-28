@@ -23,7 +23,7 @@
 	});
 </script>
 
-<footer class="btm-nav lg:hidden md:hidden" class:relative={isScrolledToBottom}>
+<footer class="btm-nav lg:hidden md:hidden" class:hidden={isScrolledToBottom}>
 	<a href="/" class="text-primary" class:active={$page.url.pathname == '/'}>
 		<Icon icon="tabler:books" class="text-4xl" />
 	</a>
