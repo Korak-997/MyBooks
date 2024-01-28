@@ -61,7 +61,14 @@ export const getBooksFromCloud = async () => {
 		console.error('Error getting books: ', error);
 	}
 };
-
+export const updateBookInCloud = async (item, id) => {
+	try {
+		await databases.updateDocument('my-books', 'books', id, item);
+		return { succeed: true };
+	} catch (error) {
+		return { succeed: false, error: error };
+	}
+};
 export const addBookToCloud = async (book) => {
 	try {
 		await databases.createDocument('my-books', 'books', ID.unique(), book);
