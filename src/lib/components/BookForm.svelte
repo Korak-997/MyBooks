@@ -62,7 +62,19 @@
 			saved = await addBookToCloud(cleanObject(book));
 			if (saved.succeed) {
 				showSuccess = true;
-				setTimeout(() => location.reload(), 1500);
+				setTimeout(() => (showSuccess = false), 1500);
+				book = {
+					title: '',
+					authorId: '',
+					language: '',
+					genres: '',
+					tags: '',
+					started: '',
+					finished: '',
+					cover: '',
+					description: '',
+					pages: ''
+				};
 			}
 		}
 	};

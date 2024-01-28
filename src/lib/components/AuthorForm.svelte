@@ -53,7 +53,14 @@
 			saved = await addAuthorToCloud(cleanObject(author));
 			if (saved.succeed) {
 				showSuccess = true;
-				setTimeout(() => location.reload(), 1500);
+				setTimeout(() => (showSuccess = false), 1500);
+				author = {
+					name: '',
+					born: '',
+					died: '',
+					birth_place: '',
+					image: ''
+				};
 			}
 		}
 	};
