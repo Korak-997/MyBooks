@@ -80,7 +80,7 @@ MyBooks is a [Progressive Web App (PWA)](https://web.dev/explore/progressive-web
 
 - [ ] Enhance application security.
 - [ ] Allow users to generate QR codes within the app.
-- [ ] Implement the ability to edit authors or books.
+- [x] Implement the ability to edit authors or books.
 - [ ] Allow users to share their library
 
 ## Support and Contributions
