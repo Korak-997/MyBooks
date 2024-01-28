@@ -31,20 +31,22 @@
 	</div>
 
 	<div class="flex items-center justify-center p-4 shadow-xl shadow-black gap-6 flex-wrap">
-		<img src={author.image || dummyProfile} alt={author.name + 'cover'} class="w-1/3" />
-		<div class="stats stats-vertical w-2/3">
-			<div class="stat place-items-center">
-				<div class="stat-title">Born</div>
-				<div class="stat-value">{author.born}</div>
+		<img src={author.image || dummyProfile} alt={author.name + 'cover'} class="rounded-full" />
+		<section class="p-6">
+			<div class="container mx-auto grid justify-center grid-cols-2 text-center lg:grid-cols-3">
+				<div class="flex flex-col justify-start m-2 lg:m-6">
+					<p class="font-bold leadi lg:text-6xl md:text-4xl text-xl">Born</p>
+					<p class="text-sm sm:text-base">{author.born}</p>
+				</div>
+				<div class="flex flex-col justify-start m-2 lg:m-6">
+					<p class="font-bold leadi lg:text-6xl md:text-4xl text-xl">Died</p>
+					<p class="text-sm sm:text-base">{author.died}</p>
+				</div>
+				<div class="flex flex-col justify-start m-2 lg:m-6">
+					<p class="font-bold leadi lg:text-6xl md:text-4xl text-xl">Birth Place</p>
+					<p class="text-sm sm:text-base">{author.birth_place}</p>
+				</div>
 			</div>
-			<div class="stat place-items-center">
-				<div class="stat-title">Died</div>
-				<div class="stat-value">{author.died}</div>
-			</div>
-			<div class="stat place-items-center">
-				<div class="stat-title">Birth Place</div>
-				<div class="stat-value">{author.birth_place}</div>
-			</div>
-		</div>
+		</section>
 	</div>
 </div>
