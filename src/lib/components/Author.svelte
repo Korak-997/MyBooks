@@ -1,7 +1,6 @@
 <script>
 	export let author;
 	import dummyProfile from '$lib/images/dummy-face.png';
-	import Icon from '@iconify/svelte';
 </script>
 
 <a href={'/author/show/' + author.$id} class="cursor-pointer">
