@@ -17,6 +17,15 @@ export const addAuthorToCloud = async (author) => {
 	}
 };
 
+export const updateAuthorInCloud = async (item, id) => {
+	try {
+		await databases.updateDocument('my-books', 'authors', id, item);
+		return { succeed: true };
+	} catch (error) {
+		return { succeed: false, error: error };
+	}
+};
+
 export const getAuthorsFromCloud = async () => {
 	try {
 		const response = await databases.listDocuments('my-books', 'authors');
