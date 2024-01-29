@@ -25,9 +25,9 @@
 
 <footer class="btm-nav lg:hidden md:hidden" class:hidden={isScrolledToBottom}>
 	<a href="/" class="text-primary" class:active={$page.url.pathname == '/'}>
-		<Icon icon="tabler:books" class="text-4xl" />
+		<Icon icon="ph:books-thin" class="text-4xl" />
 	</a>
 	<a href="/authors" class="text-primary" class:active={$page.url.pathname == '/authors'}>
-		<Icon icon="pepicons-pop:persons" class="text-4xl" />
+		<Icon icon="pepicons-pencil:persons" class="text-4xl" />
 	</a>
 </footer>
