@@ -40,15 +40,15 @@
 		<img src={author.image || dummyProfile} alt={author.name + 'cover'} class="rounded-full" />
 		<div class="flex items-center justify-center flex-col gap-6">
 			<div class="flex items-center justify-between m-2 w-full">
-				<p class="font-bold leadi lg:text-6xl md:text-4xl text-xl">Born</p>
+				<p class="font-bold leadi lg:text-4xl md:text-4xl text-xl">Born</p>
 				<p class="text-sm sm:text-base">{author.born}</p>
 			</div>
 			<div class="flex items-center justify-between m-2 w-full">
-				<p class="font-bold leadi lg:text-6xl md:text-4xl text-xl">Died</p>
+				<p class="font-bold leadi lg:text-4xl md:text-4xl text-xl">Died</p>
 				<p class="text-sm sm:text-base">{author.died}</p>
 			</div>
 			<div class="flex items-center justify-between m-2 w-full">
-				<p class="font-bold leadi lg:text-6xl md:text-4xl text-xl">Birth Place</p>
+				<p class="font-bold leadi lg:text-4xl md:text-4xl text-xl">Birth Place</p>
 				<p class="text-sm sm:text-base">{author.birth_place}</p>
 			</div>
 		</div>
