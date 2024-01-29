@@ -1,7 +1,6 @@
 <script>
 	import { page } from '$app/stores';
 	import AuthorsStore from '$lib/stores/AuthorsStore';
-	import AuthorEditStore from '$lib/stores/AuthorEditStore';
 	import dummyProfile from '$lib/images/dummy-face.png';
 	import { deleteAuthorInCloud } from '$lib/helpers/db';
 	import Icon from '@iconify/svelte';
@@ -26,10 +25,14 @@
 
 <div class="flex items-center justify-center flex-col gap-6 w-11/12">
 	<div class="flex items-center justify-between w-11/12 my-6 p-4 shadow-xl shadow-black">
+		<a href={'/author/edit/' + author.id} class="btn btn-warning btn-sm"
+			><Icon icon="material-symbols-light:edit-outline" class="text-2xl" /></a
+		>
 		<h1 class="text-2xl w-full text-center font-extrabold text-primary">
 			{author.name}
 		</h1>
-		<button on:click={handleDelete} class="btn btn-error"
+
+		<button on:click={handleDelete} class="btn btn-error btn-sm"
 			><Icon icon="mdi:delete-outline" class="text-2xl" /></button
 		>
 	</div>

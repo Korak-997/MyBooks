@@ -64,6 +64,9 @@
 		</div>
 	{/if}
 	<div class="flex items-center justify-around w-11/12 shadow-xl shadow-black p-4 flex-wrap">
+		<a href={'/book/edit/' + book.id} class="btn btn-warning"
+			><Icon icon="material-symbols-light:edit-outline" class="text-2xl" /></a
+		>
 		<button on:click={handleDelete} class="btn btn-error"
 			><Icon icon="mdi:delete-outline" class="text-2xl" /></button
 		>

@@ -3,7 +3,7 @@
 	export let id;
 	export let currentBook;
 	import AuthorsStore from '$lib/stores/AuthorsStore';
-	import { addBookToCloud } from '$lib/helpers/db';
+	import { addBookToCloud, updateBookInCloud } from '$lib/helpers/db';
 	import { cleanObject } from '$lib/helpers/methods';
 	let book;
 	import Icon from '@iconify/svelte';
@@ -53,14 +53,14 @@
 	const saveBook = async () => {
 		let saved;
 		if (id && !newBook) {
-			// saved = await updateBookInCloud(book, id);
-			// if (saved.succeed) {
-			// 	location.href = '/';
-			// }
-			console.log('updating not implemented yet');
+			//because we do not need author again in our database table
+			delete book.author;
+			saved = await updateBookInCloud(cleanObject(book), book.id);
+			if (saved.status) {
+				location.href = '/';
+			}
 		} else {
 			saved = await addBookToCloud(cleanObject(book));
-			console.log(saved);
 			if (saved.status) {
 				showSuccess = true;
 				setTimeout(() => (showSuccess = false), 1500);
