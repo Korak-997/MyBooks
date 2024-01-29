@@ -1,88 +1,54 @@
-import { Client, Databases, ID } from 'appwrite';
+import { createClient } from '@supabase/supabase-js';
 
-const client = new Client()
-	.setEndpoint(import.meta.env.VITE_APPWRITE_ENDPOINT)
-	.setProject(import.meta.env.VITE_APPWRITE_PROJECT_ID);
-
-const databases = new Databases(client);
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseKey = import.meta.env.VITE_SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 //author methods
 
-export const addAuthorToCloud = async (author) => {
-	try {
-		await databases.createDocument('my-books', 'authors', ID.unique(), author);
-		return { succeed: true };
-	} catch (error) {
-		return { succeed: false, error: error };
-	}
-};
-
-export const updateAuthorInCloud = async (item, id) => {
-	try {
-		await databases.updateDocument('my-books', 'authors', id, item);
-		return { succeed: true };
-	} catch (error) {
-		return { succeed: false, error: error };
-	}
-};
-
 export const getAuthorsFromCloud = async () => {
-	try {
-		const response = await databases.listDocuments('my-books', 'authors');
-		if (response.total > 0) {
-			return [...response.documents];
-		} else {
-			return [];
-		}
-	} catch (error) {
-		console.error('Error getting authors: ', error);
-	}
+	const { data: authors, error } = await supabase.from('my-books-demo-authors').select('*');
+	return error || authors == null ? { status: false, msg: error } : authors;
+};
+export const addAuthorToCloud = async (author) => {
+	const { error } = await supabase.from('my-books-demo-authors').insert([author]);
+	return error ? { status: false, msg: error } : { status: true };
+};
+
+export const updateAuthorInCloud = async (author, id) => {
+	const { data, error } = await supabase
+		.from('my-books-demo-authors')
+		.update(author)
+		.eq('id', id)
+		.select();
+	return error ? { status: false, msg: error } : { status: true, data };
 };
 
 export const deleteAuthorInCloud = async (id) => {
-	try {
-		databases.deleteDocument('my-books', 'authors', id);
-	} catch (error) {
-		console.error('Error getting authors: ', error);
-	}
+	const { error } = await supabase.from('my-books-demo-authors').delete().eq('id', id);
+	return error ? { status: false, msg: error } : { status: true };
 };
 
 //book methods
 
 export const getBooksFromCloud = async () => {
-	try {
-		const response = await databases.listDocuments('my-books', 'books');
-		if (response.total > 0) {
-			return [...response.documents];
-		} else {
-			return [];
-		}
-	} catch (error) {
-		console.error('Error getting books: ', error);
-	}
+	const { data: books, error } = await supabase.from('my-books-demo-books').select('*');
+	return error || books == null ? { status: false, msg: error } : books;
 };
-export const updateBookInCloud = async (item, id) => {
-	try {
-		await databases.updateDocument('my-books', 'books', id, item);
-		return { succeed: true };
-	} catch (error) {
-		return { succeed: false, error: error };
-	}
+export const updateBookInCloud = async (book, id) => {
+	const { data, error } = await supabase
+		.from('my-books-demo-books')
+		.update(book)
+		.eq('id', id)
+		.select();
+	return error ? { status: false, msg: error } : { status: true, data };
 };
 export const addBookToCloud = async (book) => {
-	try {
-		await databases.createDocument('my-books', 'books', ID.unique(), book);
-		return { succeed: true };
-	} catch (e) {
-		console.error('Error adding document: ', e);
-		return { succeed: false, error: e };
-	}
+	const { error } = await supabase.from('my-books-demo-books').insert([book]);
+	return error ? { status: false, msg: error } : { status: true };
 };
 
 export const deleteBookInCloud = async (id) => {
-	try {
-		databases.deleteDocument('my-books', 'books', id);
-	} catch (e) {
-		console.error('Error deleting book: ', e);
-	}
+	const { error } = await supabase.from('my-books-demo-books').delete().eq('id', id);
+	return error ? { status: false, msg: error } : { status: true };
 };

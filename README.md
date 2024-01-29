@@ -2,7 +2,7 @@
 
 ## Overview
 
-MyBooks is a [Progressive Web App (PWA)](https://web.dev/explore/progressive-web-apps) designed to help users manage their physical library at home. Built with [SvelteKit](https://kit.svelte.dev/), [Tailwind CSS](https://tailwindcss.com/), and [DaisyUI](https://daisyui.com/) for styling, the app leverages [Appwrite Cloud](https://cloud.appwrite.io/) for the backend. Users can track their book collection, including details about each book and its author. The application is designed to be self-hosted, ensuring privacy and control over personal library data.
+MyBooks is a [Progressive Web App (PWA)](https://web.dev/explore/progressive-web-apps) designed to help users manage their physical library at home. Built with [SvelteKit](https://kit.svelte.dev/), [Tailwind CSS](https://tailwindcss.com/), and [DaisyUI](https://daisyui.com/) for styling, the app leverages [SupaBase](https://supabase.com/) for the backend. Users can track their book collection, including details about each book and its author. The application is designed to be self-hosted, ensuring privacy and control over personal library data.
 
 ## Features
 
@@ -17,7 +17,36 @@ MyBooks is a [Progressive Web App (PWA)](https://web.dev/explore/progressive-web
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/) installed on your machine
-- [Appwrite Cloud](https://appwrite.io/) account for the backend services
+- [SupaBase](https://appwrite.io/) account and Database for the backend services
+
+### Supabase Database should look like this:
+
+- Authors Table
+  - Name = my-books-demo-authors
+    |Col name|default value|type|
+    |--------|-------------|----|
+    |id|auto increment|int8|
+    |created_at|auto generated|datetime|
+    |died|null|varchar|
+    |born|null|varchar|
+    |image|null|text|
+    |birth_place|null|varchar|
+- Books Table
+  - Name = my-books-demo-books
+    |Col name|default value|type|
+    |--------|-------------|----|
+    |id|auto increment|int8|
+    |created_at|auto generated|datetime|
+    |title|null|varchar|
+    |tags|null|text|
+    |cover|null|text|
+    |started|null|varchar|
+    |finished|null|varchar|
+    |description|null|text|
+    |genres|null|varchar|
+    |language|null|varchar|
+    |page|null|int8|
+    |authorId|author_id|refrence|
 
 ### Installation
 
@@ -42,8 +71,9 @@ MyBooks is a [Progressive Web App (PWA)](https://web.dev/explore/progressive-web
 4. Create a `.env` file in the root directory and configure it with your Appwrite Cloud credentials:
 
    ```env
-   VITE_APPWRITE_ENDPOINT=https://appwrite.example.com/v1
-   VITE_APPWRITE_PROJECT_ID=your-appwrite-project-id
+   VITE_SUPABASE_URL=YOUR_URL
+   VITE_SUPABASE_KEY=YOUR_KEY
+
    ```
 
 5. Run the application:
