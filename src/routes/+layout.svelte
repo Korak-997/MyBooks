@@ -15,7 +15,7 @@
 		BooksStore.update(() =>
 			books.map(
 				(book) =>
-					(book = { author: authors.filter((author) => author.$id == book.authorId)[0], ...book })
+					(book = { author: authors.filter((author) => author.id == book.authorId)[0], ...book })
 			)
 		);
 	});

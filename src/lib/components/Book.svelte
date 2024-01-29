@@ -2,10 +2,10 @@
 	export let book;
 	import dummyCover from '$lib/images/dummy-cover.png';
 	import Icon from '@iconify/svelte';
-	let language = book.language.toLowerCase();
+	let language = book.language && book.language.toLowerCase();
 </script>
 
-<a href={'/book/show/' + book.$id} class="cursor-pointer">
+<a href={'/book/show/' + book.id} class="cursor-pointer">
 	<div
 		class="card w-96 bg-base-100 shadow-xl shadow-black hover:shadow-secondary hover:shadow-md transition-shadow ease-in-out"
 	>
@@ -17,11 +17,13 @@
 				{book.title}
 			</h2>
 			<h3 class="card-title text-xl text-secondary">By: {book.author.name}</h3>
-			<div class="w-11/12">
-				<p class:font-kurdish={language == 'kurdish'}>
-					{book.description.substring(0, 100) + ' ...'}
-				</p>
-			</div>
+			{#if book.description}
+				<div class="w-11/12">
+					<p class:font-kurdish={language == 'kurdish'}>
+						{book.description && book.description.substring(0, 100) + ' ...'}
+					</p>
+				</div>
+			{/if}
 		</div>
 	</div>
 </a>

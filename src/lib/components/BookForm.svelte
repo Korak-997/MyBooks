@@ -60,7 +60,8 @@
 			console.log('updating not implemented yet');
 		} else {
 			saved = await addBookToCloud(cleanObject(book));
-			if (saved.succeed) {
+			console.log(saved);
+			if (saved.status) {
 				showSuccess = true;
 				setTimeout(() => (showSuccess = false), 1500);
 				book = {
@@ -104,7 +105,7 @@
 	<select bind:value={book.authorId} class="select select-bordered">
 		<option disabled selected></option>
 		{#each authors as author}
-			<option value={author.$id}>{author.name}</option>
+			<option value={author.id}>{author.name}</option>
 		{/each}
 	</select>
 	<div class="label">

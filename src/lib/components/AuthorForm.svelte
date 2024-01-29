@@ -51,7 +51,8 @@
 		} else {
 			//cleans author object
 			saved = await addAuthorToCloud(cleanObject(author));
-			if (saved.succeed) {
+			console.log(saved);
+			if (saved.status) {
 				showSuccess = true;
 				setTimeout(() => (showSuccess = false), 1500);
 				author = {

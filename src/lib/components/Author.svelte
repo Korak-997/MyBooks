@@ -3,7 +3,7 @@
 	import dummyProfile from '$lib/images/dummy-face.png';
 </script>
 
-<a href={'/author/show/' + author.$id} class="cursor-pointer">
+<a href={'/author/show/' + author.id} class="cursor-pointer">
 	<div
 		class="card w-96 bg-base-100 shadow-xl shadow-black hover:shadow-secondary hover:shadow-md transition-shadow ease-in-out"
 	>
