@@ -7,7 +7,10 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 //author methods
 
 export const getAuthorsFromCloud = async () => {
-	const { data: authors, error } = await supabase.from('my-books-demo-authors').select('*');
+	const { data: authors, error } = await supabase
+		.from('my-books-demo-authors')
+		.select('*')
+		.order('created_at', { ascending: false });
 	return error || authors == null ? { status: false, msg: error } : authors;
 };
 export const addAuthorToCloud = async (author) => {
@@ -32,7 +35,10 @@ export const deleteAuthorInCloud = async (id) => {
 //book methods
 
 export const getBooksFromCloud = async () => {
-	const { data: books, error } = await supabase.from('my-books-demo-books').select('*');
+	const { data: books, error } = await supabase
+		.from('my-books-demo-books')
+		.select('*')
+		.order('created_at', { ascending: false });
 	return error || books == null ? { status: false, msg: error } : books;
 };
 export const updateBookInCloud = async (book, id) => {
