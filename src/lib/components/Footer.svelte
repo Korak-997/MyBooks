@@ -2,28 +2,24 @@
 	import Icon from '@iconify/svelte';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-
-	let isScrolledToBottom = false;
-
-	const handleScroll = () => {
-		const { scrollTop, scrollHeight, clientHeight } = document.documentElement || document.body;
-
-		// Check if the user has scrolled to the bottom
-		isScrolledToBottom = scrollTop + clientHeight >= scrollHeight;
-	};
+	let isGoingDown = false;
 
 	onMount(() => {
+		let oldScrollY = window.scrollY;
 		// Attach the scroll event listener when the component is mounted
-		window.addEventListener('scroll', handleScroll);
+		window.addEventListener('scroll', () => {
+			isGoingDown = oldScrollY < window.scrollY;
+			oldScrollY = window.scrollY;
+		});
 
 		// Clean up the event listener when the component is destroyed
 		return () => {
-			window.removeEventListener('scroll', handleScroll);
+			window.removeEventListener('scroll');
 		};
 	});
 </script>
 
-<footer class="btm-nav lg:hidden md:hidden" class:hidden={isScrolledToBottom}>
+<footer class="btm-nav lg:hidden md:hidden" class:hidden={isGoingDown}>
 	<a href="/" class="text-primary" class:active={$page.url.pathname == '/'}>
 		<Icon icon="ph:books-thin" class="text-4xl" />
 	</a>
