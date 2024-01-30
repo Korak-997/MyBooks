@@ -1,7 +1,7 @@
 <script>
 	export let book;
 	import dummyCover from '$lib/images/dummy-cover.png';
-	import Icon from '@iconify/svelte';
+	import Tag from '$lib/components/Tag.svelte';
 	let language = book.language && book.language.toLowerCase();
 </script>
 
@@ -17,6 +17,13 @@
 				{book.title}
 			</h2>
 			<h3 class="card-title text-xl text-secondary">By: {book.author.name}</h3>
+			{#if book.tags}
+				<div class="flex w-11/12 items-center justify-around gap-2 flex-wrap">
+					{#each book.tags.split(',') as name}
+						<Tag {name} />
+					{/each}
+				</div>
+			{/if}
 			{#if book.description}
 				<div class="w-11/12">
 					<p class:font-kurdish={language == 'kurdish'}>

@@ -4,6 +4,7 @@
 	export let currentBook;
 	import AuthorsStore from '$lib/stores/AuthorsStore';
 	import { addBookToCloud, updateBookInCloud } from '$lib/helpers/db';
+	import Tag from '$lib/components/Tag.svelte';
 	import { cleanObject } from '$lib/helpers/methods';
 	let book;
 	import Icon from '@iconify/svelte';
@@ -164,6 +165,12 @@
 		name="genres"
 		id="genres"
 	/>
+</div>
+<div>
+	<p class="text-md text-warning">Current available tags are:</p>
+	<Tag name="Finished" />
+	<Tag name="Started" />
+	<p class="text-md text-warning">Tag names should be separated with comma</p>
 </div>
 <div class="join">
 	<label for="tags" class="btn join-item rounded-l-full">Tags</label>

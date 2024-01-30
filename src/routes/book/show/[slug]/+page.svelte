@@ -5,6 +5,7 @@
 	let book;
 	import { deleteBookInCloud } from '$lib/helpers/db';
 	import Icon from '@iconify/svelte';
+	import Tag from '$lib/components/Tag.svelte';
 	BooksStore.subscribe((data) => {
 		book = data.filter((item) => item.id == $page.params.slug)[0];
 	});
@@ -60,6 +61,13 @@
 		<div class="flex items-center justify-around w-11/12 shadow-xl shadow-black p-4 flex-wrap">
 			{#each book.genres.split(',') as genre}
 				<p class="bg-primary p-2 m-1 text-black rounded-full shadow-xl shadow-black">{genre}</p>
+			{/each}
+		</div>
+	{/if}
+	{#if book.tags}
+		<div class="flex items-center justify-around w-11/12 shadow-xl shadow-black p-4 flex-wrap">
+			{#each book.tags.split(',') as name}
+				<Tag {name} />
 			{/each}
 		</div>
 	{/if}
