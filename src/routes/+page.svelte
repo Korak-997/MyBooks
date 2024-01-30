@@ -9,8 +9,8 @@
 	BooksStore.subscribe((data) => {
 		books = data;
 	});
-	const startedBooks = books.filter((book) => book.started).length;
-	const finishedBooks = books.filter((book) => book.finished).length;
+	const startedBooks = books.filter((book) => book.started != null).length;
+	const finishedBooks = books.filter((book) => book.finished != null).length;
 	const remainedBooks = books.filter((book) => !book.finished).length;
 </script>
 
