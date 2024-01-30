@@ -3,7 +3,7 @@
 	import Book from '../lib/components/Book.svelte';
 	import Icon from '@iconify/svelte';
 	import NoData from '$lib/images/NoData.svg';
-
+	import Search from '$lib/components/Search.svelte';
 	let showStats = false;
 	let books;
 	BooksStore.subscribe((data) => {
@@ -24,6 +24,7 @@
 		class="flex w-11/12 shadow-xl shadow-black items-center justify-around flex-wrap p-4 rounded-xl"
 	>
 		<h2 class="text-secondary font-extrabold text-2xl">Books</h2>
+		<Search item={'books'} list={books} />
 		<a href={'/book/new/'} class="btn btn-success btn-sm"
 			><Icon icon="ic:baseline-plus" class="text-2xl" /></a
 		>

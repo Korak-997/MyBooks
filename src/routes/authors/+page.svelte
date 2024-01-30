@@ -3,6 +3,7 @@
 	import Author from '$lib/components/Author.svelte';
 	import Icon from '@iconify/svelte';
 	import NoData from '$lib/images/NoData.svg';
+	import Search from '$lib/components/Search.svelte';
 	let authors;
 	AuthorsStore.subscribe((data) => {
 		authors = data;
@@ -19,6 +20,7 @@
 		class="flex w-11/12 shadow-xl shadow-black items-center justify-around flex-wrap p-4 rounded-xl"
 	>
 		<h2 class="text-secondary font-extrabold text-2xl">Authors</h2>
+		<Search item={'authors'} list={authors} />
 		<a href={'/author/new/'} class="btn btn-success btn-sm"
 			><Icon icon="ic:baseline-plus" class="text-2xl" /></a
 		>
