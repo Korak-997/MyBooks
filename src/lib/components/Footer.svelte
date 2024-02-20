@@ -1,25 +1,17 @@
 <script>
 	import Icon from '@iconify/svelte';
 	import { page } from '$app/stores';
-	import { onMount } from 'svelte';
+
 	let isGoingDown = false;
-
-	onMount(() => {
-		let oldScrollY = window.scrollY;
-		// Attach the scroll event listener when the component is mounted
-		window.addEventListener('scroll', () => {
-			isGoingDown = oldScrollY < window.scrollY;
-			oldScrollY = window.scrollY;
-		});
-
-		// Clean up the event listener when the component is destroyed
-		return () => {
-			window.removeEventListener('scroll');
-		};
-	});
+	let oldScrollY;
+	const handleScroll = () => {
+		isGoingDown = oldScrollY < window.scrollY;
+		oldScrollY = window.scrollY;
+	};
 </script>
 
-<footer class="btm-nav lg:hidden md:hidden" class:hidden={isGoingDown}>
+<svelte:window bind:scrollY={oldScrollY} on:scroll={handleScroll} />
+<footer class="btm-nav lg:hidden md:hidden z-20" class:hidden={isGoingDown}>
 	<a href="/" class="text-primary" class:active={$page.url.pathname == '/'}>
 		<Icon icon="ph:books-thin" class="text-4xl" />
 	</a>
