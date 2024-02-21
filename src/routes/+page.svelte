@@ -4,14 +4,43 @@
 	import Icon from '@iconify/svelte';
 	import NoData from '$lib/images/NoData.svg';
 	import Search from '$lib/components/Search.svelte';
+	import { getFinishedBooks, getStartedBooks } from '$lib/helpers/db';
+	import { onMount } from 'svelte';
 	let showStats = false;
 	let books;
 	BooksStore.subscribe((data) => {
 		books = data;
 	});
-	const startedBooks = books.filter((book) => book.started != null).length;
-	const finishedBooks = books.filter((book) => book.finished != null).length;
-	const remainedBooks = books.filter((book) => !book.finished).length;
+	let startedBooks;
+	let finishedBooks;
+	onMount(async () => {
+		startedBooks = (await getStartedBooks()) || 0;
+		finishedBooks = (await getFinishedBooks()) || 0;
+	});
+	let showFilter = false;
+	let filters = {
+		onlyFinished: false,
+		onlyStarted: false,
+		onlyUnknownAuthor: false
+	};
+	const resetFilters = () => {
+		BooksStore.subscribe((data) => {
+			books = data;
+		});
+	};
+	const showOnlyFinished = () => {
+		filters.onlyFinished ? (books = books.filter((book) => book.finished != null)) : resetFilters();
+	};
+	const showOnlyUnknownAuthor = () => {
+		filters.onlyUnknownAuthor
+			? (books = books.filter((book) => book.author.name == 'Unknown'))
+			: resetFilters();
+	};
+	const showOnlyStarted = () => {
+		filters.onlyStarted
+			? (books = books.filter((book) => book.started != null && book.finished == null))
+			: resetFilters();
+	};
 </script>
 
 <svelte:head>
@@ -61,11 +90,74 @@
 				</div>
 				<div class="stat place-items-center">
 					<div class="stat-title">Remained</div>
-					<div class="stat-value">{remainedBooks}</div>
+					<div class="stat-value">{books.length - finishedBooks}</div>
 				</div>
 			</div>
 		</div>
-
+		<div class="collapse shadow-xl shadow-black w-full">
+			<input type="checkbox" bind:checked={showFilter} />
+			<div
+				class="collapse-title text-2xl font-medium flex justify-around items-center w-full text-primary"
+			>
+				{#if !showFilter}<Icon icon="mingcute:down-fill" class="text-2xl" /> Filters <Icon
+						icon="mingcute:down-fill"
+						class="text-2xl"
+					/>
+				{:else}
+					<Icon icon="mingcute:up-fill" class="text-2xl" /> Filters <Icon
+						icon="mingcute:up-fill"
+						class="text-2xl"
+					/>
+				{/if}
+			</div>
+			<div class="stats stats-vertical lg:stats-horizontal md:stats-horizontal">
+				<div class="stat place-items-center">
+					<div class="stat-value">
+						<div class="form-control w-52">
+							<label class="cursor-pointer label">
+								<span class="label-text">Finished</span>
+								<input
+									type="checkbox"
+									class="toggle toggle-primary"
+									bind:checked={filters.onlyFinished}
+									on:change={showOnlyFinished}
+								/>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="stat place-items-center">
+					<div class="stat-value">
+						<div class="form-control w-52">
+							<label class="cursor-pointer label">
+								<span class="label-text">Started</span>
+								<input
+									type="checkbox"
+									class="toggle toggle-primary"
+									bind:checked={filters.onlyStarted}
+									on:change={showOnlyStarted}
+								/>
+							</label>
+						</div>
+					</div>
+				</div>
+				<div class="stat place-items-center">
+					<div class="stat-value">
+						<div class="form-control w-52">
+							<label class="cursor-pointer label">
+								<span class="label-text">Unknown Author</span>
+								<input
+									type="checkbox"
+									class="toggle toggle-primary"
+									bind:checked={filters.onlyUnknownAuthor}
+									on:change={showOnlyUnknownAuthor}
+								/>
+							</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="flex items-center justify-around gap-6 w-11/12 p-4 flex-wrap">
 			{#each books as book}
 				<Book {book} />
