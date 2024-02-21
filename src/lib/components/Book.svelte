@@ -1,36 +1,54 @@
 <script>
+	import Icon from '@iconify/svelte';
+
 	export let book;
 	import dummyCover from '$lib/images/dummy-cover.png';
-	import Tag from '$lib/components/Tag.svelte';
 	let language = book.language && book.language.toLowerCase();
 </script>
 
-<a href={'/book/show/' + book.id} class="cursor-pointer">
-	<div
-		class="card w-96 bg-base-100 shadow-xl shadow-black hover:shadow-secondary hover:shadow-md transition-shadow ease-in-out"
-	>
-		<figure class="px-10 pt-10">
-			<img src={book.cover || dummyCover} alt={book.title} class="rounded-xl w-80 h-96" />
-		</figure>
-		<div class="card-body items-center text-center">
-			<h2 class:font-kurdish={language == 'kurdish'} class="card-title text-2xl text-primary">
-				{book.title}
-			</h2>
-			<h3 class="card-title text-xl text-secondary">By: {book.author.name}</h3>
-			{#if book.tags}
-				<div class="flex w-11/12 items-center justify-around gap-2 flex-wrap">
-					{#each book.tags.split(',') as name}
-						<Tag {name} />
-					{/each}
-				</div>
-			{/if}
-			{#if book.description}
-				<div class="w-11/12">
-					<p class:font-kurdish={language == 'kurdish'}>
-						{book.description && book.description.substring(0, 100) + ' ...'}
-					</p>
-				</div>
-			{/if}
-		</div>
+<div class="p-2 flex items-center justify-center flex-col shadow-sm shadow-neutral gap-4 w-96 h-96">
+	<div class="book-bg w-full h-full">
+		{#if book.description}
+			<h6
+				class="absolute text-center text-neutral p-4 h-full overflow-auto"
+				class:font-kurdish={language == 'kurdish'}
+			>
+				{book.description}
+			</h6>
+		{/if}
+		<div
+			class:book-cover={book.description}
+			class=" h-full w-full flex items-center justify-center z-10 text-right absolute bg-base-100"
+			style={`background-image: url(${book.cover || dummyCover}); background-size:contain; background-repeat:no-repeat; background-position:center;`}
+		/>
 	</div>
-</a>
+	<div class="flex items-center justify-around w-full">
+		<a title="show book" href={'/book/show/' + book.id} class="btn btn-secondary"
+			><Icon icon="mdi:show-outline" class="text-2xl" /></a
+		>
+		<a title="edit book" href={'/book/edit/' + book.id} class="btn btn-warning"
+			><Icon icon="material-symbols-light:edit-outline" class="text-2xl" /></a
+		>
+	</div>
+</div>
+
+<style scoped>
+	.book-bg {
+		position: relative;
+		background: transparent;
+		transform-style: preserve-3d;
+		perspective: 900px;
+		vertical-align: center;
+		box-sizing: border-box;
+	}
+
+	.book-cover {
+		transform-origin: 0 50%;
+		transition: all 1s linear;
+	}
+
+	.book-bg:hover .book-cover {
+		transform: rotateY(-85deg);
+		transform-style: preserve-3d;
+	}
+</style>
