@@ -34,6 +34,22 @@ export const deleteAuthorInCloud = async (id) => {
 
 //book methods
 
+export const getFinishedBooks = async () => {
+	let { data: finished, error } = await supabase
+		.from('my-books-demo-books')
+		.select('*')
+		// Filters
+		.neq('finished', null);
+	return error ? false : finished.length;
+};
+export const getStartedBooks = async () => {
+	let { data: started, error } = await supabase
+		.from('my-books-demo-books')
+		.select('*')
+		.neq('started', null);
+	return error ? false : started.length;
+};
+
 export const getBooksFromCloud = async () => {
 	const { data: books, error } = await supabase
 		.from('my-books-demo-books')

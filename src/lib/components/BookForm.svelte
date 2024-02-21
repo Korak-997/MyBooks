@@ -4,10 +4,10 @@
 	export let currentBook;
 	import AuthorsStore from '$lib/stores/AuthorsStore';
 	import { addBookToCloud, updateBookInCloud } from '$lib/helpers/db';
-	import Tag from '$lib/components/Tag.svelte';
 	import { cleanObject } from '$lib/helpers/methods';
 	let book;
 	import Icon from '@iconify/svelte';
+	import Tag from '$lib/components/Tag.svelte';
 	let authors;
 	AuthorsStore.subscribe((data) => {
 		authors = data;
@@ -36,7 +36,29 @@
 		};
 		reader.readAsDataURL(e.target.files[0]);
 	};
+	const validateBook = () => {
+		const emptyOrFalseKeys = [];
+		const keysToValidate = ['authorId', 'title', 'pages', 'language', 'cover'];
+		keysToValidate.forEach((key) => {
+			if (book.hasOwnProperty(key)) {
+				const value = book[key];
 
+				// Check if the value is empty or false
+				if (!value) {
+					emptyOrFalseKeys.push(key);
+				}
+			}
+		});
+		if (emptyOrFalseKeys.length == 0) {
+			return true;
+		} else {
+			errorText = `Value/s of (${emptyOrFalseKeys}) cannot be empty`;
+			showError = true;
+			return false;
+		}
+	};
+	let showError = false;
+	let errorText = '';
 	book = newBook
 		? {
 				title: '',
@@ -52,31 +74,35 @@
 			}
 		: currentBook;
 	const saveBook = async () => {
+		let isValid = validateBook();
 		let saved;
-		if (id && !newBook) {
-			//because we do not need author again in our database table
-			delete book.author;
-			saved = await updateBookInCloud(cleanObject(book), book.id);
-			if (saved.status) {
-				location.href = '/';
-			}
-		} else {
-			saved = await addBookToCloud(cleanObject(book));
-			if (saved.status) {
-				showSuccess = true;
-				setTimeout(() => (showSuccess = false), 1500);
-				book = {
-					title: '',
-					authorId: '',
-					language: '',
-					genres: '',
-					tags: '',
-					started: '',
-					finished: '',
-					cover: '',
-					description: '',
-					pages: ''
-				};
+
+		if (isValid) {
+			if (id && !newBook) {
+				//because we do not need author again in our database table
+				delete book.author;
+				saved = await updateBookInCloud(cleanObject(book), book.id);
+				if (saved.status) {
+					location.href = '/';
+				}
+			} else {
+				saved = await addBookToCloud(cleanObject(book));
+				if (saved.status) {
+					showSuccess = true;
+					setTimeout(() => (showSuccess = false), 1500);
+					book = {
+						title: '',
+						authorId: '',
+						language: '',
+						genres: '',
+						tags: '',
+						started: '',
+						finished: '',
+						cover: '',
+						description: '',
+						pages: ''
+					};
+				}
 			}
 		}
 	};
@@ -86,6 +112,13 @@
 	<div class="toast toast-top toast-center">
 		<div class="alert alert-success">
 			<span>Author saved Successfully.</span>
+		</div>
+	</div>
+{/if}
+{#if showError}
+	<div class="toast toast-top toast-center">
+		<div class="alert alert-error">
+			<span>{errorText}</span>
 		</div>
 	</div>
 {/if}

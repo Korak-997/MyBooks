@@ -8,6 +8,29 @@
 	let author;
 	import Icon from '@iconify/svelte';
 
+	const validateAuthor = () => {
+		const emptyOrFalseKeys = [];
+		const keysToValidate = ['name'];
+		keysToValidate.forEach((key) => {
+			if (author.hasOwnProperty(key)) {
+				const value = author[key];
+
+				// Check if the value is empty or false
+				if (!value) {
+					emptyOrFalseKeys.push(key);
+				}
+			}
+		});
+		if (emptyOrFalseKeys.length == 0) {
+			return true;
+		} else {
+			errorText = `Value of (${emptyOrFalseKeys}) cannot be empty`;
+			showError = true;
+			return false;
+		}
+	};
+	let showError = false;
+	let errorText = '';
 	author = newAuthor
 		? {
 				name: '',
@@ -43,25 +66,28 @@
 	};
 	const saveAuthor = async () => {
 		let saved;
-		if (id && !newAuthor) {
-			saved = await updateAuthorInCloud(cleanObject(author), author.id);
-			if (saved.status) {
-				location.href = '/';
-			}
-		} else {
-			//cleans author object
-			saved = await addAuthorToCloud(cleanObject(author));
-			console.log(saved);
-			if (saved.status) {
-				showSuccess = true;
-				setTimeout(() => (showSuccess = false), 1500);
-				author = {
-					name: '',
-					born: '',
-					died: '',
-					birth_place: '',
-					image: ''
-				};
+		let isValid = validateAuthor();
+		if (isValid) {
+			if (id && !newAuthor) {
+				saved = await updateAuthorInCloud(cleanObject(author), author.id);
+				if (saved.status) {
+					location.href = '/';
+				}
+			} else {
+				//cleans author object
+				saved = await addAuthorToCloud(cleanObject(author));
+				console.log(saved);
+				if (saved.status) {
+					showSuccess = true;
+					setTimeout(() => (showSuccess = false), 1500);
+					author = {
+						name: '',
+						born: '',
+						died: '',
+						birth_place: '',
+						image: ''
+					};
+				}
 			}
 		}
 	};
@@ -74,7 +100,13 @@
 		</div>
 	</div>
 {/if}
-
+{#if showError}
+	<div class="toast toast-top toast-center">
+		<div class="alert alert-error">
+			<span>{errorText}</span>
+		</div>
+	</div>
+{/if}
 <div class="join">
 	<label for="name" class="btn join-item rounded-l-full">Name</label>
 	<input
