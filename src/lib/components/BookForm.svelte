@@ -21,13 +21,13 @@
 			const img = new Image();
 			img.src = e.target.result;
 			//scales down image to be
-			// 250px X 250px
+			// 250px X 350px
 			img.onload = function () {
 				const canvas = document.createElement('canvas');
 				const ctx = canvas.getContext('2d');
 				canvas.width = 250;
-				canvas.height = 250;
-				ctx.drawImage(img, 0, 0, 250, 250);
+				canvas.height = 350;
+				ctx.drawImage(img, 0, 0, 250, 350);
 				const resizedBase64 = canvas.toDataURL('image/png');
 				//author_image source to base64 string
 				//so author_image be saved in database
